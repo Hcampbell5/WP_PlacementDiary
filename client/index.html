@@ -1,0 +1,60 @@
+<!doctype html>
+<meta charset=utf-8>
+<script defer src="index.js"></script>
+<link rel="stylesheet" href="style.css">
+
+<title>My Placement Diary </title>
+
+<h1>Placement Diary</h1>
+
+<main>
+    <section id="month">
+        <h2> March </h2>
+    </section>
+</main>
+
+
+<template id="tplate-entry">
+    <article class = "entry">
+        <aside>Date</aside>
+        <p class ="entry-date">Date</p>
+        <aside>Date</aside>
+        <p class ="entry-work">Work Completed</p>
+        <aside>Date</aside>
+        <p class ="entry-xp">Knowledge Used</p>
+        <aside>Date</aside>
+        <p class ="entry-competency">Competency Level</p>
+    </article>
+</template>
+
+
+<ul id=logList>
+    <li>log entries show here</li>
+    <li>more than this hopefully</li>
+</ul>
+
+<input id=showLogEntryForm type=button value="Add Entry" onclick="showLogEntryForm()" />
+
+<div>
+    <label for="logDate">Entry Date</label>
+    <input type="date" id="logDate"
+    name ="log-date"
+            min="2023-01-01">
+
+    <label for="workcmp">Work completed</label>
+    <input type="text" id="workCmp" 
+    name="work-done" required
+        size ="25">
+
+    <label for="knGain">Knowledge Gained</label>
+    <input type="text" id="knGain" 
+    name="knownledge-gained" required
+        size ="25">
+
+    <label for="competency">Competency</label>
+    <input type="text" id="cmptcy" 
+    name="competency-level" required
+        size ="2">
+
+    <input id=submitEntry type=submit value="Submit">
+</div>
