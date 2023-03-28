@@ -1,5 +1,6 @@
 import express from 'express';
 import * as db from './memdb.js';
+
 const app = express();
 app.use(express.static('client'));
 
