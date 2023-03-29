@@ -1,40 +1,46 @@
-const el = {}; //change to app
-/* Remove all contents from a given element */
+const el = {}; 
+const app = {};
+app.usrID = 'abc'
+// Remove all contents from a given element //
 function removeContentFrom(what) {
   what.textContent = '';
 }
 
-
-/* Add an array of logEntry to the page */
-function showLogEntries(logEntry, where) {
-  for (const entry of logEntry) {
-    const li = document.createElement('li');
-    li.textContent = (entry.date +" |  "+ entry.workCompleted +" |  "+ entry.knowledgeGained +"  | "+ entry.competency);
-    where.appendChild(li);
-  }
+//gets all log entries for an ID and places them inside of app
+async function getLogEntries() {
+  const response = await fetch(`/entries/${app.usrID}/all`); 
+  if (response.ok) {
+    app.data = await response.json();
+  } 
 }
 
+//clones template
 function cloneTemplate(selector) {
   const tplate = document.querySelector(selector);
   return tplate.content.firstElementChild.cloneNode(true);
 }
 
-function populateDiary() {
-  //for each entry in el.data make a new article element
+  //for each entry in app.data make a new article element
   //to hold and display it 
-  for (const entry of el.data) {
+function populateDiary() {
+  
+  for (const entry of app.data) {
     const article = cloneTemplate('#tplate-entry');
     article.querySelector('.entry-date').textContent = entry.date;
-    article.querySelector('.entry-work').textContent = entry.date;
-    article.querySelector('.entry-xp').textContent = entry.date;
-    article.querySelector('.entry-competency').textContent = entry.date;
+    article.querySelector('.entry-work').textContent = entry.work;
+    article.querySelector('.entry-xp').textContent = entry.xp;
+    article.querySelector('.entry-competency').textContent = entry.competency;
+    
     const month = document.querySelector('#month');
     month.append(article)
   }
 }
 
+
+
+/*load log entry
 async function loadLogEntry() {
-  const response = await fetch('/entries/${el.usrID}/all'); 
+  const response = await fetch('/entries/${app.usrID}/all'); 
   let logEntry;
   if (response.ok) {
     logEntry = await response.json();
@@ -45,8 +51,9 @@ async function loadLogEntry() {
   removeContentFrom(el.logList);
   showLogEntries(logEntry, el.logList);
 }
+*/
 
-/* add a message if enter pressed */
+// add entry if enter pressed //
 function checkKeys(e) {
   if (e.key === 'Enter') {
     sendLogEntry();
@@ -72,6 +79,8 @@ async function sendLogEntry(logEntryObj) {
     console.log('failed to send log entry', response);
   }
 }
+
+
 function createLogEntry () {
   let logEntryObj = {
     date: el.logEntry_Date.value,
@@ -90,7 +99,6 @@ function addEventListeners() {
 }
 
 function prepareHandles() {
-  el.logList = document.querySelector('#logList')
   el.submitLogEntry = document.querySelector('#submitEntry');
   el.logEntry_Date = document.querySelector('#logDate');
   el.logEntry_WC = document.querySelector('#workCmp');
@@ -101,12 +109,12 @@ function prepareHandles() {
 }
 
 function pageLoaded() {
-  loadLogEntry();
   prepareHandles();
   addEventListeners();
   removeContentFrom(document);
-  el.logEntry_Date.valueAsDate = new Date();
 }
-// deprecated in favour of using defer in the script tag
-// window.addEventListener('load', pageLoaded);
+
+await getLogEntries();
+populateDiary();
+console.log(app.data);
 pageLoaded();
