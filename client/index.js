@@ -29,8 +29,8 @@ function populateDiary() {
     article.querySelector('.entry-date').textContent = entry.date;
     article.querySelector('.entry-work').textContent = entry.work;
     article.querySelector('.entry-xp').textContent = entry.xp;
-    article.querySelector('.entry-competency').textContent = entry.competency;
-    
+    article.querySelector('.entry-competency').textContent = entry.competencies;
+
     const month = document.querySelector('#month');
     month.append(article)
   }

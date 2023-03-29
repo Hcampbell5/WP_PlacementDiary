@@ -6,7 +6,7 @@ data.push({
     date: '01/04',
     work: 'created a github repository',
     xp: 'how to use github frameworks',
-    competencies: ['ab', 'bc', 'cd' ],
+    competencies: ['B3', 'B4', 'E1' ],
 });
 
 data.push({
@@ -15,7 +15,7 @@ data.push({
     date: '02/04',
     work: 'started web programming cw',
     xp: 'full stack development',
-    competencies: ['ad', 'bd', 'cd' ],
+    competencies: ['E2', 'E5', 'D1', 'A2'],
 });
 
 data.push({
@@ -24,7 +24,7 @@ data.push({
     date: '03/04',
     work: 'started web programming cw',
     xp: 'full stack development',
-    competencies: ['ad', 'bd', 'cd' ],
+    competencies: ['A1', 'A2', 'B3' ],
 });
 
 data.push({
@@ -33,7 +33,7 @@ data.push({
     date: '04/04',
     work: 'started web programming cw',
     xp: 'full stack development',
-    competencies: ['ad', 'bd', 'cd' ],
+    competencies: ['B4', 'C3'],
 });
 
 
