@@ -6,6 +6,7 @@
   "type": "module",
   "scripts": {
     "start": "node svr"
+
   },
   "author": "Harry Campbell <up2006913@myport.ac.uk>",
   "license": "ISC",

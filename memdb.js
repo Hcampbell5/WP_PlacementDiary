@@ -4,16 +4,19 @@ import uuid from 'uuid-random';
 data.push({
     usrID: 'abc',
     id: '27f7b86c-0a70-489c-93bb-3255256fc650',
-    date: '2023-03-28',
+    date: '03-28',
     work: 'Created a github repository',
     xp: 'How to use github frameworks',
-    competencies: ['B3', 'B4', 'E1' ],
+    //competencies: ['B3', 'B4', 'E1' ],
+    competencies: 'A1',
 });
 
 //gets entry by specific entry id
 export function getEntry(id) {
     return data.find(entry => entry.id === id);
 }
+
+
 
 //gets all entries belonging specific usrID
 export function getUserEntries(usrID) {
@@ -26,7 +29,7 @@ export function addEntry(msg) {
         usrID: msg.usrID,
         id: uuid(),
         date: msg.date,
-        work: msg.workCompleted,
+        work: msg.work,
         xp: msg.xp,
         competencies: msg.competencies,
     };
@@ -38,12 +41,17 @@ export function addEntry(msg) {
 
 //replaces entries with edited entry 
 export function editEntry(updatedMessage) {
-const storedEntry = getEntry(updatedMessage.id);
+const storedEntry = getEntry(updatedMessage.msg.id);
 if (storedEntry == null) throw new Error('Log Entry not found');
 
 // update old message in place
-storedEntry.msg = updatedMessage.msg;
-//change line 45
+storedEntry.usrID = updatedMessage.msg.usrID;
+storedEntry.id = updatedMessage.msg.id;
+storedEntry.date = updatedMessage.msg.date;
+storedEntry.work = updatedMessage.msg.work;
+storedEntry.xp = updatedMessage.msg.xp;
+storedEntry.competencies = updatedMessage.msg.competencies;
 
-return storedMessage;
+console.log('updated entry: ', storedEntry);
+return storedEntry;
 }

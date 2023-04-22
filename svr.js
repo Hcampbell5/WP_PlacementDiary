@@ -30,8 +30,8 @@ function postLogEntry(req, res) {
 }
 
 function putLogEntry(req, res) {
-  const message = mb.editEntry(req.body);
-  res.json(message);
+  const logEntry = db.editEntry(req.body);
+  res.json(logEntry);
 }
 
 app.get('/entries/:usrID/all', getUserEntries);

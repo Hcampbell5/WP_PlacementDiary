@@ -12,43 +12,60 @@
 
 <main>
     <section id="month">
-        <h2> March </h2>
+        <input type=button value = '⇦' class='date-selector'></input>
+        <h2 class='date-selector'> March </h2> 
+        <input type=button value = '⇨' class='date-selector'></input>       
     </section>
 
-    <input id=showLogEntryForm type=button value="Add Entry" onclick="showLogEntryForm()" />
+    <input id=showLogEntryForm class=user_buttons type=button value="Add Entry" onclick="showLogEntryForm()" />
+    <input id=printLog class=user_buttons type=button value="Print Log" " />
+    <input id=shareLog class=user_buttons type=button value="Share Log" onclick="location.href='/logShare.html' ; "/>
 
-    <div>
-        <label for="logDate">Entry Date</label>
+
+    <div class="hide-on-button-press hidden">
+        <label for="logDate" class="hidden" ></label>>Entry Date</label>
         <input type="date" id="logDate"
         name ="log-date"
-                min="2023-01-01">
+                min="01-01"
+                class="hide-on-button-press hidden"
+                lang="en-GB">
 
-        <label for="workcmp">Work completed</label>
+        <label for="workcmp" class="hidden"></label>>Work completed</label>
         <input type="text" id="workCmp" 
         name="work-done" required
-            size ="25">
+            size ="25"
+            class="hide-on-button-press hidden">
 
-        <label for="knGain">Knowledge Gained</label>
+        <label for="knGain" class="hidden"></label>>Knowledge Gained</label>
         <input type="text" id="knGain" 
         name="knownledge-gained" required
-            size ="25">
+            size ="25"
+            class="hide-on-button-press hidden">
 
-        <label for="competency">Competency</label>
-        <select name="competency-level" id="cmptcy">
-            <optgroup label="A">
+        <label for="competency" class="hidden"></label>>Competency</label>
+        <select name="competency-level" id="cmptcy" class="hide-on-button-press hidden">
+            <optgroup label="A - knowledge and understanding">
                 <option value="A1">A1</option>
                 <option value="A2">A2</option>
             </optgroup>
-            <optgroup label="B">
+            <optgroup label="B - design, development and problem solving">
                 <option value="B1">B1</option>
                 <option value="B2">B2</option>
             </optgroup>
-            <optgroup label="C">
+            <optgroup label="C - responsibility, management and leadership">
                 <option value="C1">C1</option>
                 <option value="C2">C2</option>
             </optgroup>
+            <optgroup label="D - communication and interpersonal skills">
+                <option value="D1">D1</option>
+                <option value="D2">D2</option>
+            </optgroup>
+            <optgroup label="E - professional commmitment">
+                <option value="E1">E1</option>
+                <option value="E2">E2</option>
+            </optgroup>
             </select>
-        <input id=submitEntry type=submit value="Submit">
+        <input id=submitEntry type=submit value="Submit" class="hide-on-button-press hidden">
     </div>
 
 </main>
@@ -63,5 +80,7 @@
         <p class ="entry-xp">Knowledge Used</p>
         <!--<aside>Competency Levels :</aside> -->
         <p class ="entry-competency">Competency Level</p>
+        <!--<input class="editLog" type=button value="Edit Log" onclick="location.href='/logEntry.html' ; " />-->
+        <a class="edit-link" href="/logEntry.html">Edit Log</a>
     </article>
 </template>

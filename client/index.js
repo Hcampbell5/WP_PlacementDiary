@@ -2,6 +2,16 @@ const el = {};
 const app = {};
 app.usrID = 'abc'
 
+//prepares the page, calls handler and listener functions
+function pageLoaded() {
+  prepareHandles();
+  addEventListeners();
+  el.logEntry_Date.valueAsDate = new Date();
+  populateDiary();
+  console.log(app.data);
+  getLogEntries();
+}
+
 
 //clones template
 function cloneTemplate(selector) {
@@ -13,29 +23,20 @@ function cloneTemplate(selector) {
 function populateDiary() {
   for (const entry of app.data) {
     const article = cloneTemplate('#tplate-entry');
+    article.dataset.id = entry.id;
     article.querySelector('.entry-date').textContent = entry.date;
     article.querySelector('.entry-work').textContent = entry.work;
     article.querySelector('.entry-xp').textContent = entry.xp;
     article.querySelector('.entry-competency').textContent = entry.competencies;
+    
+
 
     const month = document.querySelector('#month');
     month.append(article)
   }
 }
 
-/*load log entry
-async function loadLogEntry() {
-  const response = await fetch('/entries/${app.usrID}/all'); 
-  let logEntry;
-  if (response.ok) {
-    logEntry = await response.json();
-  } else {
-    logEntry = ['failed to load log Entry :-('];
-  }
-  removeContentFrom(el.logList);
-  showLogEntries(logEntry, el.logList);
-}
-*/
+
 
 //gets all log entries for an ID and places them inside of app
 async function getLogEntries() {
@@ -51,8 +52,8 @@ async function getLogEntries() {
 function createLogEntry () {
   let logEntryObj = {
     usrID: app.usrID ,
-    date: el.logEntry_Date.value,
-    workCompleted: el.logEntry_WC.value,
+    date: el.logEntry_Date.value.slice(5),
+    work: el.logEntry_WC.value,
     xp: el.logEntry_KG.value,
     competencies: el.logEntry_CMP.value,
   };
@@ -72,12 +73,11 @@ async function sendLogEntry(logEntryObj) {
 
   if (response.ok) {
 
-    //remove content from all text boxes
     //update the page with new entries
       //add in code
-      //use removecontentfrom?
       //await getLogEntries();
       //populateDiary();
+      location.reload();
 
     const updatedLogEntry = await response.json();
   } else {
@@ -85,11 +85,16 @@ async function sendLogEntry(logEntryObj) {
   }
 }
 
+function editLog(){
+  debugger;
+}
+
 //add event listeners for buttons
 function addEventListeners() {
   el.submitLogEntry.addEventListener('click', createLogEntry);
   el.showLogEntryForm.addEventListener('click', showLogEntryForm);
 }
+
 
 //preparing handlers for entry boxes
 function prepareHandles() {
@@ -99,17 +104,17 @@ function prepareHandles() {
   el.logEntry_KG = document.querySelector('#knGain');
   el.logEntry_CMP = document.querySelector('#cmptcy');
   el.showLogEntryForm = document.querySelector('#showLogEntryForm');
-  //el.logTable = document.querySelector('#logTable');
 }
 
-//prepares the page, calls handler and listener functions
-function pageLoaded() {
-  prepareHandles();
-  addEventListeners();
-  el.logEntry_Date.valueAsDate = new Date();}
-  await getLogEntries();
-  populateDiary();
+//show or hide the logs Add Entry form 
+function showLogEntryForm() {
+  var elements = document.querySelectorAll(".hide-on-button-press, .hidden");
+  for (var i = 0; i < elements.length; i++) {
+    elements[i].classList.toggle("hidden");
+    //When hidden clear contents?
+  }
+}
 
-console.log(app.data);
+await getLogEntries();
 pageLoaded();
 

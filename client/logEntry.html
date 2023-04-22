@@ -1,13 +1,53 @@
 <!doctype html>
+<title>My Placement Diary </title>
 <meta charset=utf-8>
-<script defer src="message.js"></script>
+<script src="logEntry.js" defer type="module"></script>
 <link rel="stylesheet" href="style.css">
-<title>Placement Diary: Edit Entry</title>
+<link rel="shortcut icon" href="#">
 
-<h1>Edit Entry</h1>
 
-<input id=message type=text placeholder='Loading…'>
-<input id=send type=submit value=Update>
+<header>
+<h1>EDIT PLACEMENT DIARY</h1>
+</header>
 
-<p><a href="/">Back to Placement Diary</a>
-    
+<div>
+    <!--<label for="logDate" ></label>>Entry Date</label>
+    <input type="date" id="logDate"
+    name ="log-date"
+            min="2023-01-01"> !-->
+
+    <label for="workcmp" ></label>>Work completed</label>
+    <input type="text" id="workCmp" 
+    name="work-done" required
+        size ="25">
+
+    <label for="knGain" ></label>>Knowledge Gained</label>
+    <input type="text" id="knGain" 
+    name="knownledge-gained" required
+        size ="25">
+
+    <label for="competency" ></label>>Competency</label>
+    <select name="competency-level" id="cmptcy" >
+        <optgroup label="A - knowledge and understanding">
+            <option value="A1">A1</option>
+            <option value="A2">A2</option>
+        </optgroup>
+        <optgroup label="B - design, development and problem solving">
+            <option value="B1">B1</option>
+            <option value="B2">B2</option>
+        </optgroup>
+        <optgroup label="C - responsibility, management and leadership">
+            <option value="C1">C1</option>
+            <option value="C2">C2</option>
+        </optgroup>
+        <optgroup label="D - communication and interpersonal skills">
+            <option value="D1">D1</option>
+            <option value="D2">D2</option>
+        </optgroup>
+        <optgroup label="E - professional commmitment">
+            <option value="E1">E1</option>
+            <option value="E2">E2</option>
+        </optgroup>
+        </select>
+    <input id=submitLogEntry type=submit value="Submit" >
+</div>
