@@ -10,7 +10,9 @@
   "author": "Harry Campbell <up2006913@myport.ac.uk>",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "uuid": "^9.0.0",
+    "uuid-random": "^1.3.2"
   },
   "devDependencies": {
     "eslint": "^8.36.0",

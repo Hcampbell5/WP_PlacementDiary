@@ -3,55 +3,65 @@
 <meta charset=utf-8>
 <script src="index.js" defer type="module"></script>
 <link rel="stylesheet" href="style.css">
+<link rel="shortcut icon" href="#">
 
 
 <header>
-<h1>Placement Diary</h1>
+<h1>PLACEMENT DIARY</h1>
 </header>
 
 <main>
     <section id="month">
         <h2> March </h2>
     </section>
-</main>
 
+    <input id=showLogEntryForm type=button value="Add Entry" onclick="showLogEntryForm()" />
+
+    <div>
+        <label for="logDate">Entry Date</label>
+        <input type="date" id="logDate"
+        name ="log-date"
+                min="2023-01-01">
+
+        <label for="workcmp">Work completed</label>
+        <input type="text" id="workCmp" 
+        name="work-done" required
+            size ="25">
+
+        <label for="knGain">Knowledge Gained</label>
+        <input type="text" id="knGain" 
+        name="knownledge-gained" required
+            size ="25">
+
+        <label for="competency">Competency</label>
+        <select name="competency-level" id="cmptcy">
+            <optgroup label="A">
+                <option value="A1">A1</option>
+                <option value="A2">A2</option>
+            </optgroup>
+            <optgroup label="B">
+                <option value="B1">B1</option>
+                <option value="B2">B2</option>
+            </optgroup>
+            <optgroup label="C">
+                <option value="C1">C1</option>
+                <option value="C2">C2</option>
+            </optgroup>
+            </select>
+        <input id=submitEntry type=submit value="Submit">
+    </div>
+
+</main>
 
 <template id="tplate-entry">
     <article class = "entry">
-        <aside>Date</aside>
+        <!-- <aside>Date :</aside> -->
         <p class ="entry-date">Date</p>
-        <aside>Work Completed</aside>
+        <!--<aside>Work Completed :</aside> -->
         <p class ="entry-work">Work Completed</p>
-        <aside>Knowledge Gain</aside>
+        <!--<aside>Knowledge Gain :</aside> -->
         <p class ="entry-xp">Knowledge Used</p>
-        <aside>Competency Levels</aside>
+        <!--<aside>Competency Levels :</aside> -->
         <p class ="entry-competency">Competency Level</p>
     </article>
 </template>
-
-
-<input id=showLogEntryForm type=button value="Add Entry" onclick="showLogEntryForm()" />
-
-<div>
-    <label for="logDate">Entry Date</label>
-    <input type="date" id="logDate"
-    name ="log-date"
-            min="2023-01-01">
-
-    <label for="workcmp">Work completed</label>
-    <input type="text" id="workCmp" 
-    name="work-done" required
-        size ="25">
-
-    <label for="knGain">Knowledge Gained</label>
-    <input type="text" id="knGain" 
-    name="knownledge-gained" required
-        size ="25">
-
-    <label for="competency">Competency</label>
-    <input type="text" id="cmptcy" 
-    name="competency-level" required
-        size ="2">
-
-    <input id=submitEntry type=submit value="Submit">
-</div>

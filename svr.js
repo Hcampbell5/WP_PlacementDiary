@@ -24,12 +24,19 @@ function  getEntry(req, res) {
 }
 
 function postLogEntry(req, res) {
-      logEntry = [req.body.msg, ...logEntry.slice(0, 9)];
-      res.json(logEntry); //fix this 
+      //logEntry = [req.body.msg, ...logEntry.slice(0, 9)];
+      const logEntry = db.addEntry(req.body.msg);
+      res.json(logEntry); 
+}
+
+function putLogEntry(req, res) {
+  const message = mb.editEntry(req.body);
+  res.json(message);
 }
 
 app.get('/entries/:usrID/all', getUserEntries);
 app.get('/entries/:id', getEntry)
-app.post('/entries', express.json(), postLogEntry); //fix this 
+app.put('/entries/:id', express.json(), putLogEntry);
+app.post('/entries', express.json(), postLogEntry); 
 
 app.listen(8080);
