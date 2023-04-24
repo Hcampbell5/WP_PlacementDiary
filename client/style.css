@@ -1,6 +1,12 @@
+@font-face {
+  font-family: 'Arial MT';
+  src: url('ARLRDBLD.ttf') format('truetype');
+}
+
 body {
   background: #EFF7FF;
   color: white;
+  font-family: 'Arial MT', sans-seriff;
 }
 
 .editLog {
