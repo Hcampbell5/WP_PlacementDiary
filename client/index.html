@@ -17,7 +17,7 @@
         <input type=button value = '⇨' class='date-selector'></input>       
     </section>
 
-    <input id=showLogEntryForm class=user_buttons type=button value="Add Entry" onclick="showLogEntryForm()" />
+    <input id=showLogEntryForm class=user_buttons type=button value="Add Entry" />
     <input id=printLog class=user_buttons type=button value="Print Log" " />
     <input id=shareLog class=user_buttons type=button value="Share Log" onclick="location.href='/logShare.html' ; "/>
 
@@ -80,7 +80,6 @@
         <p class ="entry-xp">Knowledge Used</p>
         <!--<aside>Competency Levels :</aside> -->
         <p class ="entry-competency">Competency Level</p>
-        <!--<input class="editLog" type=button value="Edit Log" onclick="location.href='/logEntry.html' ; " />-->
-        <a class="edit-link" href="/logEntry.html">Edit Log</a>
+        <a id=editlog class="editLog">Edit Log</a>
     </article>
 </template>

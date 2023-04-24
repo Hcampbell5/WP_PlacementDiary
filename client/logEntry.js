@@ -1,11 +1,11 @@
+//import editLog from "./index.js";
 const el = {}; 
 const app = {};
-app.usrID = 'abc'
+app.usrID = 'abc';
 
 
 //for each entry in app.data make a new article element to hold and display it 
 function populateDiary() {
-console.log(app.data);
 //el.logEntry_Date.value = app.data.date;
 el.logEntry_WC.value = app.data.work;
 el.logEntry_KG.value = app.data.xp;
@@ -13,18 +13,16 @@ el.logEntry_CMP.value = app.data.competencies;
 }
 
 //function to get log entry ID
-function getEntryId() {
-   return '27f7b86c-0a70-489c-93bb-3255256fc650';
-   //return app.data.find(entry => entry.id === logId);
+function getEntryId(id) {
+  app.id = window.location.hash.substring(1);
 }
 
 //gets all log entries for a single ID and places them inside of app
 async function getLogEntry() {
-    const id = getEntryId();
-    const response = await fetch(`/entries/${id}`); 
+    const response = await fetch(`/entries/${app.id}`); 
     if (response.ok) {
         app.data = await response.json();
-        console.log(app.data);
+        console.log('fetched log', app.data);
     } else {
         app.data = ['failed to load log Entry :-('];
     }
@@ -32,9 +30,9 @@ async function getLogEntry() {
 
 //creates JSON for log entry
 function createLogEntry () {
-  const id = getEntryId();
+  
   let logEntryObj = {
-    id: id,
+    id: app.id,
     usrID: app.usrID ,
     //date: el.logEntry_Date.value.slice(5),
     date: app.data.date,
@@ -62,6 +60,7 @@ try{
 
   if (response.ok) {
     const updatedLog = await response.json();
+    console.log('log sent!');
   } else {
     console.log('failed to send log entry', response);
   }
@@ -83,10 +82,6 @@ function prepareHandles() {
 //add event listeners for buttons
 function addEventListeners() {
   el.submitLogEntry.addEventListener('click', createLogEntry);
-
-//  el.submitLogEntry.addEventListener('click', () => {
- //   window.location.href = "index.html"; 
-//  });
 }
 
 
@@ -95,6 +90,7 @@ function addEventListeners() {
 function pageLoaded() {
   prepareHandles();
   addEventListeners();
+  getEntryId();
 }
 
 pageLoaded();

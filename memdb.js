@@ -5,10 +5,20 @@ data.push({
     usrID: 'abc',
     id: '27f7b86c-0a70-489c-93bb-3255256fc650',
     date: '03-28',
-    work: 'Created a github repository',
-    xp: 'How to use github frameworks',
+    work: 'Created a web application',
+    xp: 'Basic javascript and html',
     //competencies: ['B3', 'B4', 'E1' ],
     competencies: 'A1',
+});
+
+data.push({
+    usrID: 'abc',
+    id: 'f71d5f6c-9741-464a-9930-ad1d039884bf',
+    date: '03-29',
+    work: 'Created edit log page',
+    xp: 'HTML Put and POST',
+    //competencies: ['B3', 'B4', 'E1' ],
+    competencies: 'B2',
 });
 
 //gets entry by specific entry id
