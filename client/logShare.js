@@ -1,11 +1,9 @@
 const app = {};
 app.usrID = 'abc'
-//prepares the page, calls handler and listener functions
+
+//prepares the page and populates diary
 function pageLoaded() {
- // prepareHandles();
- // addEventListeners();
   populateDiary();
- //getLogEntries();
 }
 
 //clones template
@@ -38,13 +36,6 @@ async function getLogEntries() {
     app.data = ['failed to load log Entries :-('];
   }
 }
-
-
-
-
-
-
-
 
 await getLogEntries();
 pageLoaded();
