@@ -2,7 +2,7 @@ import express from 'express';
 import * as db from './memdb.js';
 
 const app = express();
-app.use(express.static('client'));
+app.use(express.static('client', { extensions: ['html'] }));
 
 
 function safeSend(data, res, msg) {
@@ -13,24 +13,24 @@ function safeSend(data, res, msg) {
   }
 }
 
-function getUserEntries(req, res) {
-  const result = db.getUserEntries(req.params.usrID);
+async function getUserEntries(req, res) {
+  const result = await db.getUserEntries(req.params.usrID);
   safeSend(result, res, 'no user entries found');
 }
 
-function getEntry(req, res) {
-  const result = db.getEntry(req.params.id);
+async function getEntry(req, res) {
+  const result = await db.getEntry(req.params.id);
   safeSend(result, res, 'no user entries found');
 }
 
-function postLogEntry(req, res) {
+async function postLogEntry(req, res) {
   // logEntry = [req.body.msg, ...logEntry.slice(0, 9)];
-  const logEntry = db.addEntry(req.body.msg);
+  const logEntry = await db.addEntry(req.body.msg);
   res.json(logEntry);
 }
 
-function putLogEntry(req, res) {
-  const logEntry = db.editEntry(req.body);
+async function putLogEntry(req, res) {
+  const logEntry = await db.editEntry(req.body);
   res.json(logEntry);
 }
 
