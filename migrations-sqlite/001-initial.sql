@@ -1,7 +1,7 @@
 -- Up
 
 CREATE TABLE logEntries (
-  usrID         TEXT       NOT NULL,
+  usrID         CHAR(36)   NOT NULL,
   id            CHAR(36)   PRIMARY KEY,
   logdate       TEXT       NOT NULL,
   work          TEXT       NOT NULL,
@@ -15,7 +15,7 @@ INSERT INTO logEntries (usrID, id, logdate, work, xp, competencies) VALUES
   '03-29',
   'Created a web application',
   'How to use HTML and JS',
-  'A1' ),
+  'A1' );
 
 -- Down
 
