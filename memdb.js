@@ -18,7 +18,7 @@ const dbConn = init();
 export async function getUserEntries(usrID) {
   // return data.filter(entry => entry.usrID === usrID);
   const db = await dbConn;
-  return db.get('SELECT * FROM logEntries WHERE usrID = ?', [usrID]);
+  return db.all('SELECT * FROM logEntries WHERE usrID = ?', [usrID]);
 }
 
 // gets entry by specific entry id
@@ -33,7 +33,7 @@ export async function addEntry(msg) {
   const db = await dbConn;
   const usrID = msg.usrID;
   const id = uuid();
-  const date = msg.date;
+  const date = msg.logdate;
   const work = msg.work;
   const xp = msg.xp;
   const competencies = msg.competencies;
@@ -44,14 +44,15 @@ export async function addEntry(msg) {
 // replaces entries with edited entry
 export async function editEntry(updatedMessage) {
   const db = await dbConn;
-  const usrID = updatedMessage.msg.usrID;
+  // const usrID = updatedMessage.msg.usrID;
   const id = updatedMessage.msg.id;
-  const date = updatedMessage.msg.date;
+  const logdate = updatedMessage.msg.logdate;
   const work = updatedMessage.msg.work;
   const xp = updatedMessage.msg.xp;
   const competencies = updatedMessage.msg.competencies;
 
-  const statement = await db.run('UPDATE logEntries SET id = ? , logdate = ?, work = ? , xp = ? , competencies = ?  WHERE usrID = ?', [id, date, work, xp, competencies, usrID]);
+  const statement = await db.run('UPDATE logEntries SET logdate = ?, work = ? , xp = ? , competencies = ?  WHERE id = ?', [logdate, work, xp, competencies, id]);
+  console.log(statement);
 
   if (statement.changes === 0) throw new Error('message not found');
   return getEntry(id);

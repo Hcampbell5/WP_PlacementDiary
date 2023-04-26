@@ -1,17 +1,15 @@
 const el = {};  //stores all of the elements on page (textboxes, buttons etc)
 const app = {}; //stores the log data 
-app.usrID = 'abc' //hard-coded user id
-
+//app.usrID = 'abc' //hard-coded user id
 var logEntryId = '';
 
 //prepares the page, calls handler and event listener functions
 function pageLoaded() {
   prepareHandles();
+  console.log(el.userSelector.value);
   addEventListeners();
   el.logEntry_Date.valueAsDate = new Date();
-  populateDiary();
   console.log(app.data);
-  //getLogEntries();
 }
 
 //clones template
@@ -25,17 +23,11 @@ function populateDiary() {
   for (const entry of app.data) {
     const article = cloneTemplate('#tplate-entry');
     article.dataset.id = entry.id;
-    article.querySelector('.entry-date').textContent = entry.date;
+    article.querySelector('.entry-date').textContent = entry.logdate;
     article.querySelector('.entry-work').textContent = entry.work;
     article.querySelector('.entry-xp').textContent = entry.xp;
     article.querySelector('.entry-competency').textContent = entry.competencies;
     article.querySelector('.editLog').href = `/logEntry.html#${article.dataset.id}` ;
-
-    //onst editLogBtn = article.querySelector('.editLog');
-    //editLogBtn.addEventListener('click', function() {  //idk why but this works
-    //  logEditID(article.dataset.id);
-    //  window.location.href='/logEntry.html';
-    //});
 
     const month = document.querySelector('#month');
     month.append(article)
@@ -46,9 +38,10 @@ function populateDiary() {
 
 //gets all log entries for an ID and places them inside of app
 async function getLogEntries() {
-  const response = await fetch(`/entries/${app.usrID}/all`); 
+  const response = await fetch(`/entries/${app.usrID}/all`);
   if (response.ok) {
-    app.data = await response.json();
+    app.data = await response.json(); 
+    console.log ('logs loaded: ',app.data)
   } else {
     app.data = ['failed to load log Entries :-('];
   }
@@ -56,9 +49,10 @@ async function getLogEntries() {
 
 //creates JSON for log entry
 function createLogEntry () {
+  debugger;
   let logEntryObj = {
     usrID: app.usrID ,
-    date: el.logEntry_Date.value.slice(5),
+    logdate: el.logEntry_Date.value, //.value.slice(5),
     work: el.logEntry_WC.value,
     xp: el.logEntry_KG.value,
     competencies: el.logEntry_CMP.value,
@@ -97,6 +91,7 @@ function logEditID(logid){
 function addEventListeners() {
   el.submitLogEntry.addEventListener('click', createLogEntry);
   el.showLogEntryForm.addEventListener('click', showLogEntryForm);
+  el.userSelector.addEventListener('select', pageLoaded)
 }
 
 //preparing handlers for entry boxes
@@ -107,6 +102,7 @@ function prepareHandles() {
   el.logEntry_KG = document.querySelector('#knGain');
   el.logEntry_CMP = document.querySelector('#cmptcy');
   el.showLogEntryForm = document.querySelector('#showLogEntryForm');
+  el.userSelector = document.querySelector('#userIDslct');
 }
 
 //show or hide the logs Add Entry form 
@@ -118,6 +114,10 @@ function showLogEntryForm() {
   }
 }
 
-await getLogEntries();
 pageLoaded();
+app.usrID = (el.userSelector.value);
+await getLogEntries();
+populateDiary();
+
+
 

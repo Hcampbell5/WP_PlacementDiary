@@ -6,7 +6,7 @@ app.usrID = 'abc';
 
 //for each entry in app.data make a new article element to hold and display it 
 function populateDiary() {
-//el.logEntry_Date.value = app.data.date;
+el.logEntry_Date.value = app.data.logdate;
 el.logEntry_WC.value = app.data.work;
 el.logEntry_KG.value = app.data.xp;
 el.logEntry_CMP.value = app.data.competencies;
@@ -30,12 +30,11 @@ async function getLogEntry() {
 
 //creates JSON for log entry
 function createLogEntry () {
-  
   let logEntryObj = {
     id: app.id,
     usrID: app.usrID ,
-    //date: el.logEntry_Date.value.slice(5),
-    date: app.data.date,
+    logdate: el.logEntry_Date.value,
+    logdate: app.data.logdate,
     work: el.logEntry_WC.value,
     xp: el.logEntry_KG.value,
     competencies: el.logEntry_CMP.value,
@@ -47,7 +46,7 @@ function createLogEntry () {
 
 //sends log entries to server
 async function sendLogEntry(logEntryObj) {
-  
+  debugger;
   const payload = {msg: logEntryObj };
   console.log('Payload', payload);
   
@@ -73,7 +72,7 @@ try{
 function prepareHandles() {
     console.log('Handles Prepared');
     el.submitLogEntry = document.querySelector('#submitLogEntry');
-   // el.logEntry_Date = document.querySelector('#logDate');
+    el.logEntry_Date = document.querySelector('#logDate');
     el.logEntry_WC = document.querySelector('#workCmp');
     el.logEntry_KG = document.querySelector('#knGain');
     el.logEntry_CMP = document.querySelector('#cmptcy');

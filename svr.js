@@ -34,9 +34,17 @@ async function putLogEntry(req, res) {
   res.json(logEntry);
 }
 
-app.get('/entries/:usrID/all', getUserEntries);
-app.get('/entries/:id', getEntry);
-app.put('/entries/:id', express.json(), putLogEntry);
-app.post('/entries', express.json(), postLogEntry);
+// wrap async function for express.js error handling
+function asyncWrap(f) {
+  return (req, res, next) => {
+    Promise.resolve(f(req, res, next))
+      .catch((e) => next(e || new Error()));
+  };
+}
+
+app.get('/entries/:usrID/all', asyncWrap(getUserEntries));
+app.get('/entries/:id', asyncWrap(getEntry));
+app.put('/entries/:id', express.json(), asyncWrap(putLogEntry));
+app.post('/entries', express.json(), asyncWrap(postLogEntry));
 
 app.listen(8080);

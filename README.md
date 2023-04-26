@@ -19,12 +19,13 @@
 [x] Hide Entry boxes with the Add Entry button
 
 
-[ ] Make getEntryID work for ALL messages
+[x] Make getEntryID work for ALL messages
 
 
-[ ] Build database using sql
-[ ] Swap data over from in memory array to database 
+[x] Build database using sql
+[x] Swap data over from in memory array to database 
 
+[ ] Fix the date formatting
 
 [ ] Find solution for having multiple competencies listed on an entry 
 [ ] Change the competencies to accept arrays
@@ -32,7 +33,12 @@
     [ ] Alternatively add in .js code to make it add to an array once selected and show it next to the drop down box
             (essentially youhave to use the drop down 3 times and it adds them one by one)
 
-
+[ ] Add more users
+[ ] Option to delete logs
+[ ] Add table for user data (useful when sharing logs)
+[ ] Custom HTML element 'tags' for competencies
+    little x to take out 
+ 
 [ ] Work on having more weeks shown via template
 [ ] Split the data into weeks and have a backwards and forwards button 
 [ ] Add in export options like PDF to manager
