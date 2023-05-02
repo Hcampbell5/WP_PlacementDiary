@@ -6,7 +6,7 @@ var logEntryId = '';
 //prepares the page, calls handler and event listener functions
 function pageLoaded() {
   prepareHandles();
-  console.log(el.userSelector.value);
+  // console.log(el.userSelector.value);
   addEventListeners();
   el.logEntry_Date.valueAsDate = new Date();
   console.log(app.data);

@@ -15,6 +15,7 @@ el.logEntry_CMP.value = app.data.competencies;
 //function to get log entry ID
 function getEntryId(id) {
   app.id = window.location.hash.substring(1);
+  return app.id;
 }
 
 //gets all log entries for a single ID and places them inside of app
@@ -68,24 +69,49 @@ try{
 }
 }
 
-//preparing handlers for entry boxes
+// delete unwanted logs
+async function deleteLogEntry(){
+  debugger;
+  const id = getEntryId()
+  
+try{
+  const response = await fetch(`/entries/${id}`, {
+    method: 'DELETE',
+  });
+
+  if (response.ok) {
+    const updatedLog = await response.json();
+    console.log('log deleted!');
+  } else {
+    console.log('failed to delete log entry', response);
+  }
+} catch (error) {
+  console.log('error deleting log entry:', error);
+}
+}
+
+
+// preparing handlers for entry boxes
 function prepareHandles() {
     console.log('Handles Prepared');
     el.submitLogEntry = document.querySelector('#submitLogEntry');
+    el.deleteLogEntry = document.querySelector('#deleteLogEntry');
     el.logEntry_Date = document.querySelector('#logDate');
     el.logEntry_WC = document.querySelector('#workCmp');
     el.logEntry_KG = document.querySelector('#knGain');
     el.logEntry_CMP = document.querySelector('#cmptcy');
+
 }
 
-//add event listeners for buttons
+// add event listeners for buttons
 function addEventListeners() {
   el.submitLogEntry.addEventListener('click', createLogEntry);
+  el.deleteLogEntry.addEventListener('click', deleteLogEntry);
 }
 
 
 
-//prepares the page, calls handler and listener functions
+// prepares the page, calls handler and listener functions
 function pageLoaded() {
   prepareHandles();
   addEventListeners();

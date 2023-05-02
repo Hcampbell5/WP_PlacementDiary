@@ -34,6 +34,11 @@ async function putLogEntry(req, res) {
   res.json(logEntry);
 }
 
+async function deleteLogEntry(req, res) {
+  const logEntry = await db.deleteEntry(req.body);
+  res.json(logEntry);
+}
+
 // wrap async function for express.js error handling
 function asyncWrap(f) {
   return (req, res, next) => {
@@ -45,6 +50,8 @@ function asyncWrap(f) {
 app.get('/entries/:usrID/all', asyncWrap(getUserEntries));
 app.get('/entries/:id', asyncWrap(getEntry));
 app.put('/entries/:id', express.json(), asyncWrap(putLogEntry));
+app.delete('/entries/:id', asyncWrap(deleteLogEntry));
 app.post('/entries', express.json(), asyncWrap(postLogEntry));
+
 
 app.listen(8080);

@@ -27,26 +27,32 @@
 
 
     <div class="hide-on-button-press hidden">
-        <label for="logDate" class="hidden" ></label>>Entry Date</label>
+        <label for="logDate" class="hidden" >Entry Date</label>
         <input type="date" id="logDate"
         name ="log-date"
                 min="01-01"
                 class="hide-on-button-press hidden"
                 lang="en-GB">
 
-        <label for="workcmp" class="hidden"></label>>Work completed</label>
-        <input type="text" id="workCmp" 
+        <label for="workcmp" class="hidden">Work completed</label>
+        <textarea type="text" id="workCmp" 
         name="work-done" required
             size ="25"
-            class="hide-on-button-press hidden">
+            cols="45" 
+            rows="3"
+            class="hide-on-button-press hidden">Work Completed
+        </textarea>
 
-        <label for="knGain" class="hidden"></label>>Knowledge Gained</label>
-        <input type="text" id="knGain" 
+        <label for="knGain" class="hidden">Knowledge Gained</label>
+        <textarea type="text" id="knGain" 
         name="knownledge-gained" required
             size ="25"
+            cols="45" 
+            rows="5"
             class="hide-on-button-press hidden">
+        </textarea>
 
-        <label for="competency" class="hidden"></label>>Competency</label>
+        <label for="cmptcy" class="hidden">Competency</label>
         <select name="competency-level" id="cmptcy" class="hide-on-button-press hidden">
             <optgroup label="A - knowledge and understanding">
                 <option value="A1">A1</option>

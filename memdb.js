@@ -57,3 +57,10 @@ export async function editEntry(updatedMessage) {
   if (statement.changes === 0) throw new Error('message not found');
   return getEntry(id);
 }
+
+// deletes log entries
+export async function deleteEntry(msg) {
+  const db = await dbConn;
+  const id = msg.id;
+  await db.run('DELETE FROM logEntries WHERE id = ?', [id]);
+}
