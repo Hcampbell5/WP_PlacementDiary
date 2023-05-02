@@ -6,7 +6,6 @@ var logEntryId = '';
 //prepares the page, calls handler and event listener functions
 function pageLoaded() {
   prepareHandles();
-  // console.log(el.userSelector.value);
   addEventListeners();
   el.logEntry_Date.valueAsDate = new Date();
   console.log(app.data);
@@ -38,6 +37,7 @@ function populateDiary() {
 
 //gets all log entries for an ID and places them inside of app
 async function getLogEntries() {
+  app.usrID = (el.userSelector.value);
   const response = await fetch(`/entries/${app.usrID}/all`);
   if (response.ok) {
     app.data = await response.json(); 
@@ -52,7 +52,7 @@ function createLogEntry () {
   debugger;
   let logEntryObj = {
     usrID: app.usrID ,
-    logdate: el.logEntry_Date.value, //.value.slice(5),
+    logdate: el.logEntry_Date.value, 
     work: el.logEntry_WC.value,
     xp: el.logEntry_KG.value,
     competencies: el.logEntry_CMP.value,
@@ -85,7 +85,6 @@ function logEditID(logid){
   logEntryId = logid;
 }
 
-//export function {editLog, logEntryId} //PASS THE VALUE OF ID TO LOGENTRY 
 
 //add event listeners for buttons
 function addEventListeners() {
@@ -115,7 +114,7 @@ function showLogEntryForm() {
 }
 
 pageLoaded();
-app.usrID = (el.userSelector.value);
+//app.usrID = (el.userSelector.value);
 await getLogEntries();
 populateDiary();
 
