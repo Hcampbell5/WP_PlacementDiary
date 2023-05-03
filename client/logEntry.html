@@ -8,32 +8,35 @@
 
 
 <header>
-<h1>EDIT PLACEMENT DIARY</h1>
+    <h1>EDIT PLACEMENT DIARY</h1>
 </header>
 
 <div>
     <label for="logDate" >Entry Date</label>
-    <input type="date" id="logDate"
-    name ="log-date"
-            min="2023-01-01"> 
+    <input type="date" 
+        id="logDate"
+        name ="log-date"
+        min="2023-01-01"> 
 
     <label for="workcmp">Work completed</label>
-    <textarea type="text" id="workCmp" 
-    name="work-done" required
+    <textarea type="text" 
+        id="workCmp" 
+        name="work-done" required
         size ="25"
         cols="45" 
-        rows="3">
-    </textarea>
+        rows="3"
+    ></textarea>
 
     <label for="knGain"> Knowledge Gained</label>
-    <textarea type="text" id="knGain" 
-    name="knownledge-gained" required
+    <textarea type="text" 
+        id="knGain" 
+        name="knownledge-gained" required
         size ="25"
         cols="45" 
-        rows="5">
-    </textarea>
+        rows="5"
+    ></textarea>
 
-    <label for="competency" >Competency</label>
+    <label for="competency">Competency</label>
     <select name="competency-level" id="cmptcy" >
         <optgroup label="A - knowledge and understanding">
             <option value="A1">A1</option>
@@ -56,6 +59,8 @@
             <option value="E2">E2</option>
         </optgroup>
         </select>
+        
+    <input id=cmptcyList type="text">
     <input id=submitLogEntry type=submit value="Submit" >
     <input id=deleteLogEntry type=submit value="Delete Log" >
 </div>

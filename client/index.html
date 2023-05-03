@@ -8,10 +8,10 @@
 
 <header>
 <h1>PLACEMENT DIARY</h1>
-<select name="User" id = "userIDslct" >
-    <option value="abc">Harry</option>
-    <option value="def">Test</option>
-</select>
+    <select name="User" id = "userIDslct" >
+        <option value="abc">TestUser</option>
+        <option value="def">TestUser2</option>
+    </select>
 </header>
 
 <main>
@@ -28,29 +28,32 @@
 
     <div class="hide-on-button-press hidden">
         <label for="logDate" class="hidden" >Entry Date</label>
-        <input type="date" id="logDate"
-        name ="log-date"
-                min="01-01"
-                class="hide-on-button-press hidden"
-                lang="en-GB">
+        <input type="date" 
+            id="logDate"
+            name ="log-date"
+            min="01-01"
+            class="hide-on-button-press hidden"
+            lang="en-GB">
 
         <label for="workcmp" class="hidden">Work completed</label>
-        <textarea type="text" id="workCmp" 
-        name="work-done" required
+        <textarea type="text" 
+            id="workCmp" 
+            name="work-done" required
             size ="25"
             cols="45" 
             rows="3"
-            class="hide-on-button-press hidden">Work Completed
-        </textarea>
+            class="hide-on-button-press hidden"
+        ></textarea>
 
         <label for="knGain" class="hidden">Knowledge Gained</label>
-        <textarea type="text" id="knGain" 
-        name="knownledge-gained" required
+        <textarea type="text" 
+            id="knGain" 
+            name="knownledge-gained" required
             size ="25"
             cols="45" 
             rows="5"
-            class="hide-on-button-press hidden">
-        </textarea>
+            class="hide-on-button-press hidden"
+        ></textarea>
 
         <label for="cmptcy" class="hidden">Competency</label>
         <select name="competency-level" id="cmptcy" class="hide-on-button-press hidden">
@@ -75,6 +78,7 @@
                 <option value="E2">E2</option>
             </optgroup>
             </select>
+        <input id=cmptcyList name="competency-list" type="text" class="hide-on-button-press hidden">
         <input id=submitEntry type=submit value="Submit" class="hide-on-button-press hidden">
     </div>
 
@@ -90,6 +94,6 @@
         <p class ="entry-xp">Knowledge Used</p>
         <!--<aside>Competency Levels :</aside> -->
         <p class ="entry-competency">Competency Level</p>
-        <a id=editlog class="editLog">Edit Log</a>
+        <a id=editlog class="entry-editLog">Edit Log</a>
     </article>
 </template>

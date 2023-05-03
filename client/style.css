@@ -85,7 +85,7 @@ article.entry {
   line-height: 1;
   margin-bottom: 2px;
   margin-top: 2px;
-  display:inline-flexbox;
+  display:inline-grid;
 }
 
 aside {

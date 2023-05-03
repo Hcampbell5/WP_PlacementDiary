@@ -59,8 +59,7 @@ export async function editEntry(updatedMessage) {
 }
 
 // deletes log entries
-export async function deleteEntry(msg) {
+export async function deleteEntry(id) {
   const db = await dbConn;
-  const id = msg.id;
   await db.run('DELETE FROM logEntries WHERE id = ?', [id]);
 }

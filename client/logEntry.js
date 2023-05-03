@@ -9,7 +9,14 @@ function populateDiary() {
 el.logEntry_Date.value = app.data.logdate;
 el.logEntry_WC.value = app.data.work;
 el.logEntry_KG.value = app.data.xp;
-el.logEntry_CMP.value = app.data.competencies;
+el.logEntry_CMPlist.value = app.data.competencies.replace(/\[|\]/g, '');
+}
+
+//function for custom element allowing multiple competencies based off drop-down entries
+function competencyList() {
+  debugger;
+  el.logEntry_CMPlist = document.querySelector('#cmptcyList')
+  el.logEntry_CMPlist.value += `, ${el.logEntry_CMP.value}`;
 }
 
 //function to get log entry ID
@@ -38,8 +45,9 @@ function createLogEntry () {
     logdate: app.data.logdate,
     work: el.logEntry_WC.value,
     xp: el.logEntry_KG.value,
-    competencies: el.logEntry_CMP.value,
+    competencies: `[${el.logEntry_CMPlist.value}]`,
   };
+  debugger;
   sendLogEntry(logEntryObj);
   window.location.href = "index.html";
   //sendLogEntry(logEntryObj);
@@ -73,14 +81,15 @@ try{
 async function deleteLogEntry(){
   debugger;
   const id = getEntryId()
-  
+  const payload = {id: id};
 try{
   const response = await fetch(`/entries/${id}`, {
     method: 'DELETE',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload),
   });
 
   if (response.ok) {
-    const updatedLog = await response.json();
     console.log('log deleted!');
   } else {
     console.log('failed to delete log entry', response);
@@ -88,6 +97,7 @@ try{
 } catch (error) {
   console.log('error deleting log entry:', error);
 }
+window.location.href = "index.html";
 }
 
 
@@ -100,6 +110,7 @@ function prepareHandles() {
     el.logEntry_WC = document.querySelector('#workCmp');
     el.logEntry_KG = document.querySelector('#knGain');
     el.logEntry_CMP = document.querySelector('#cmptcy');
+    el.logEntry_CMPlist = document.querySelector('#cmptcyList')
 
 }
 
@@ -107,6 +118,7 @@ function prepareHandles() {
 function addEventListeners() {
   el.submitLogEntry.addEventListener('click', createLogEntry);
   el.deleteLogEntry.addEventListener('click', deleteLogEntry);
+  el.logEntry_CMP.addEventListener('change', competencyList);
 }
 
 

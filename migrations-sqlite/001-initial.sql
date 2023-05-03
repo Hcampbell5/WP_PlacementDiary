@@ -6,7 +6,7 @@ CREATE TABLE logEntries (
   logdate       DATE       NOT NULL,
   work          TEXT       NOT NULL,
   xp            TEXT       NOT NULL,
-  competencies  TEXT       NOT NULL
+  competencies  TEXT[]       NOT NULL              
 );
 
 INSERT INTO logEntries (usrID, id, logdate, work, xp, competencies) VALUES
@@ -15,19 +15,19 @@ INSERT INTO logEntries (usrID, id, logdate, work, xp, competencies) VALUES
   '2023-03-29',
   'Created a web application',
   'How to use HTML and JS',
-  'A1' ),
+  '[A1, B2, B3]' ),
 ( 'def',
   'f71d5f6c-9741-464a-9930-ad1d039684bf',
   '2023-03-29',
   'Added a 2nd user',
   'How to setup database tables',
-  'C1' ),
+  '[C2, B3, D1]' ),
 ( 'abc',
   'f71d5f6c-9741-464a-9930-ad1d039885ag',
   '2023-03-30',
   'Editied my web application',
   'Not sure',
-  'B1' );  
+  '[A1, B2]' );  
 
 -- Down
 

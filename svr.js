@@ -35,7 +35,7 @@ async function putLogEntry(req, res) {
 }
 
 async function deleteLogEntry(req, res) {
-  const logEntry = await db.deleteEntry(req.body);
+  const logEntry = await db.deleteEntry(req.params.id);
   res.json(logEntry);
 }
 
