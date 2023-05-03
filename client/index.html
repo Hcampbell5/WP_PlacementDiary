@@ -8,22 +8,31 @@
 
 <header>
 <h1>PLACEMENT DIARY</h1>
-    <select name="User" id = "userIDslct" >
+    <select name="user-selector" id = "userIDslct" >
         <option value="abc">TestUser</option>
         <option value="def">TestUser2</option>
     </select>
 </header>
 
 <main>
-    <section id="month">
-        <input type=button value = '⇦' class='date-selector'></input>
-        <h2 class='date-selector'> March </h2> 
-        <input type=button value = '⇨' class='date-selector'></input>       
+    <section id="logDisplay">
+        <h2 id="logMonth" class='date-selector'> Month </h2> 
+        <input type="date" name="logDateRange" id="logDateRange">   
     </section>
 
-    <input id=showLogEntryForm class=user_buttons type=button value="Add Entry" />
-    <input id=printLog class=user_buttons type=button value="Print Log" " />
-    <input id=shareLog class=user_buttons type=button value="Share Log" onclick="location.href='/logShare.html' ; "/>
+    <input id=showLogEntryForm 
+        class=user_buttons 
+        type=button 
+        value="Add Entry"/>
+    <input id=printLog 
+        class=user_buttons 
+        type=button 
+        value="Print Log"/>
+    <input id=shareLog 
+        class=user_buttons 
+        type=button 
+        value="Share Log" 
+        onclick="location.href='/logShare.html';"/>
 
 
     <div class="hide-on-button-press hidden">
@@ -78,7 +87,7 @@
                 <option value="E2">E2</option>
             </optgroup>
             </select>
-        <input id=cmptcyList name="competency-list" type="text" class="hide-on-button-press hidden">
+        <input id=cmptcyList name="competency-list" type="text" class="hide-on-button-press hidden" readonly>
         <input id=submitEntry type=submit value="Submit" class="hide-on-button-press hidden">
     </div>
 

@@ -1,8 +1,5 @@
-//import editLog from "./index.js";
 const el = {}; 
 const app = {};
-app.usrID = 'abc';
-
 
 //for each entry in app.data make a new article element to hold and display it 
 function populateDiary() {
@@ -12,20 +9,29 @@ el.logEntry_KG.value = app.data.xp;
 el.logEntry_CMPlist.value = app.data.competencies.replace(/\[|\]/g, '');
 }
 
-//function for custom element allowing multiple competencies based off drop-down entries
+// function for custom element allowing multiple competencies based off drop-down entries
 function competencyList() {
-  debugger;
   el.logEntry_CMPlist = document.querySelector('#cmptcyList')
-  el.logEntry_CMPlist.value += `, ${el.logEntry_CMP.value}`;
+
+  if (el.logEntry_CMPlist.value === "") { //adds a comma before only when its the 2nd competency selected
+    el.logEntry_CMPlist.value += `${el.logEntry_CMP.value}`;
+  } else {
+    el.logEntry_CMPlist.value += `, ${el.logEntry_CMP.value}`;
+  }
 }
 
-//function to get log entry ID
+// clears the contents of the textbox containing the array of competencies
+function clearCompetencyList(){
+  el.logEntry_CMPlist.value = "" ;
+}
+
+// function to get log entry ID
 function getEntryId(id) {
   app.id = window.location.hash.substring(1);
   return app.id;
 }
 
-//gets all log entries for a single ID and places them inside of app
+// gets all log entries for a single ID and places them inside of app
 async function getLogEntry() {
     const response = await fetch(`/entries/${app.id}`); 
     if (response.ok) {
@@ -38,16 +44,16 @@ async function getLogEntry() {
 
 //creates JSON for log entry
 function createLogEntry () {
+  debugger;
   let logEntryObj = {
     id: app.id,
-    usrID: app.usrID ,
+    usrID: app.data.usrID ,
     logdate: el.logEntry_Date.value,
     logdate: app.data.logdate,
     work: el.logEntry_WC.value,
     xp: el.logEntry_KG.value,
     competencies: `[${el.logEntry_CMPlist.value}]`,
   };
-  debugger;
   sendLogEntry(logEntryObj);
   window.location.href = "index.html";
   //sendLogEntry(logEntryObj);
@@ -55,7 +61,6 @@ function createLogEntry () {
 
 //sends log entries to server
 async function sendLogEntry(logEntryObj) {
-  debugger;
   const payload = {msg: logEntryObj };
   console.log('Payload', payload);
   
@@ -79,7 +84,6 @@ try{
 
 // delete unwanted logs
 async function deleteLogEntry(){
-  debugger;
   const id = getEntryId()
   const payload = {id: id};
 try{
@@ -110,7 +114,8 @@ function prepareHandles() {
     el.logEntry_WC = document.querySelector('#workCmp');
     el.logEntry_KG = document.querySelector('#knGain');
     el.logEntry_CMP = document.querySelector('#cmptcy');
-    el.logEntry_CMPlist = document.querySelector('#cmptcyList')
+    el.logEntry_CMPlist = document.querySelector('#cmptcyList');
+    el.logEntry_clearCMPlist = document.querySelector('#clearCmptcyList');
 
 }
 
@@ -119,6 +124,7 @@ function addEventListeners() {
   el.submitLogEntry.addEventListener('click', createLogEntry);
   el.deleteLogEntry.addEventListener('click', deleteLogEntry);
   el.logEntry_CMP.addEventListener('change', competencyList);
+  el.logEntry_clearCMPlist.addEventListener('click', clearCompetencyList);
 }
 
 
@@ -131,7 +137,6 @@ function pageLoaded() {
 }
 
 pageLoaded();
-
 await getLogEntry();
 populateDiary();
 

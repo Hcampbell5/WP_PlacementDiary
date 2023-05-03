@@ -1,11 +1,22 @@
 body {
   background: #EFF7FF;
-  color: white;
+}
+h2 {
+  font-size: larger;
+  display: inline;
+}
+#userIDslct{
+  background: #3399FF;
+  border-radius: 3px;
+  color: #023466;
+  display: inline;
+  float: right;
 }
 
-.editLog {
+.entry-editLog {
   text-decoration: underline;
   font-size: smaller;
+  margin-top: 10px;
 }
 
 .textarea-container {
@@ -25,7 +36,24 @@ body {
 
 #deleteLogEntry{
   float: right;
-  background-color: rgb(226, 52, 52);
+  background-color: rgb(237, 2, 2);
+  color: rgb(243, 212, 212);
+}
+
+#cmptcy {
+  border-color: transparent;
+  border-radius: 2px;
+  padding: 1px;
+
+}
+#cmptcyList {
+  border-color: transparent;
+  display: inline-flex;
+}
+#clearCmptcyList {
+  margin-left: -10px;
+  background-color: white;
+  font-weight: bolder;
 }
 
 textarea{
@@ -36,11 +64,11 @@ h1 {
   text-align: center;
   background-color: #0052A3;
   color: white; 
-  padding: 5px;
+  padding: 0px;
   width: 100%;
   font-size: 2.5rem;
   font-weight: bold;
-  border-radius: 10px;
+  border-radius: 5px;
 
 }
 
@@ -76,10 +104,10 @@ template {
 
 article.entry {
   border: 2px solid #3399FF;
-  border-radius: 10px;
+  border-radius: 8px;
   padding-left: 5px;
   padding-bottom: 10px;
-  width: 100%;
+  width: 99%;
   background: #3399FF;
   font-size: small;
   line-height: 1;
@@ -88,12 +116,14 @@ article.entry {
   display:inline-grid;
 }
 
+
 aside {
   text-decoration-line: underline;
 }
 
 p {
   text-decoration-thickness: 1px;
+  margin-bottom: 1px;
 }
 
 .user_buttons {
@@ -106,14 +136,16 @@ p {
   
 }
 
-#month {
-  color: #0052A3;
+#logDisplay {
+  color: #03386e;
 }
 
 input {
   border-radius: 4px;
   padding-left: 4px;
   margin-top: 5px;
+  border-color: transparent;
+
 }
 
 
@@ -124,3 +156,11 @@ input {
 a {
   color: black;
 }
+
+#logDateRange {
+  display: inline;
+  padding: 2px;
+  background-color:#EFF7FF;
+  border-color:#3399FF;
+  border-width: 1px;
+  }
