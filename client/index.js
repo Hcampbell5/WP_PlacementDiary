@@ -7,7 +7,7 @@ function pageLoaded() {
   addEventListeners();
   debugger;
   var selectedWeek = localStorage.getItem("selectedWeek");
-
+  
   if (selectedWeek !== null) {
     el.logDateRange.valueAsDate = new Date(selectedWeek);
   } else {
