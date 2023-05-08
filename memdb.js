@@ -14,15 +14,8 @@ async function init() {
 
 const dbConn = init();
 
-// gets all entries belonging specific usrID
-export async function getUserEntries(usrID) {
-  // return data.filter(entry => entry.usrID === usrID);
-  const db = await dbConn;
-  return db.all('SELECT * FROM logEntries WHERE usrID = ?', [usrID]);
-}
-
 // gets all entries belonging specific usrID within a range
-export async function getRangeOfUserEntries(usrID, startDate, endDate) {
+export async function getUserEntries(usrID, startDate, endDate) {
   const db = await dbConn;
   return db.all('SELECT * FROM logEntries WHERE usrID = ? AND logDate BETWEEN ? AND ?', [usrID, startDate, endDate]); // Modify SQL query to filter by date range
 }
@@ -48,14 +41,14 @@ export async function addEntry(msg) {
 }
 
 // replaces entries with edited entry
-export async function editEntry(updatedMessage) {
+export async function editEntry(updatedLogEntry) {
   const db = await dbConn;
-  // const usrID = updatedMessage.msg.usrID;
-  const id = updatedMessage.msg.id;
-  const logdate = updatedMessage.msg.logdate;
-  const work = updatedMessage.msg.work;
-  const xp = updatedMessage.msg.xp;
-  const competencies = updatedMessage.msg.competencies;
+  // const usrID = updatedLogEntry.msg.usrID;
+  const id = updatedLogEntry.msg.id;
+  const logdate = updatedLogEntry.msg.logdate;
+  const work = updatedLogEntry.msg.work;
+  const xp = updatedLogEntry.msg.xp;
+  const competencies = updatedLogEntry.msg.competencies;
 
   const statement = await db.run('UPDATE logEntries SET logdate = ?, work = ? , xp = ? , competencies = ?  WHERE id = ?', [logdate, work, xp, competencies, id]);
   console.log(statement);

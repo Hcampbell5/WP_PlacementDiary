@@ -13,16 +13,11 @@ function safeSend(data, res, msg) {
   }
 }
 
-// async function getUserEntries(req, res) {
-//  const result = await db.getUserEntries(req.params.usrID);
-//  safeSend(result, res, 'no user entries found');
-// }
-
-async function getRangeOfUserEntries(req, res) {
+async function getUserEntries(req, res) {
   const { usrID } = req.params;
   const { startDate, endDate } = req.query; // New parameters for start and end date
 
-  const result = await db.getRangeOfUserEntries(usrID, startDate, endDate); // Pass start and end date to database query
+  const result = await db.getUserEntries(usrID, startDate, endDate); // Pass start and end date to database query
   safeSend(result, res, 'no user entries found');
 }
 
@@ -55,8 +50,7 @@ function asyncWrap(f) {
   };
 }
 
-// app.get('/entries/:usrID/all', asyncWrap(getUserEntries));
-app.get('/entries/:usrID/week', asyncWrap(getRangeOfUserEntries));
+app.get('/entries/:usrID/week', asyncWrap(getUserEntries));
 app.get('/entries/:id', asyncWrap(getEntry));
 app.put('/entries/:id', express.json(), asyncWrap(putLogEntry));
 app.delete('/entries/:id', asyncWrap(deleteLogEntry));

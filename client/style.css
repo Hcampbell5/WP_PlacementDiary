@@ -1,16 +1,45 @@
+/* Global styles */
+* {
+box-sizing: border-box;
+}
+
+body {
+font-family: Arial, sans-serif;
+font-size: 16px;
+margin: 0;
+padding: 0;
+}
+
+/* Header */
+header {
+background-color: #0052A3;
+color: white;
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 1rem;
+}
+
+h1 {
+margin: 0;
+font-size: 2rem;
+}
+
+#userIDslct {
+background-color: transparent;
+color: white;
+border: none;
+font-size: 1rem;
+margin-left: 1rem;
+}
+
 body {
   background: #EFF7FF;
 }
 h2 {
   font-size: larger;
   display: inline;
-}
-#userIDslct{
-  background: #3399FF;
-  border-radius: 3px;
-  color: #023466;
-  display: inline;
-  float: right;
+  border: #0052A3;
 }
 
 .entry-editLog {
@@ -60,17 +89,7 @@ textarea{
   border-radius: 4px;
   background: #EFF7FF;
 }
-h1 {
-  text-align: center;
-  background-color: #0052A3;
-  color: white; 
-  padding: 0px;
-  width: 100%;
-  font-size: 2.5rem;
-  font-weight: bold;
-  border-radius: 5px;
 
-}
 
 .date-selector {
   padding: 4px;
