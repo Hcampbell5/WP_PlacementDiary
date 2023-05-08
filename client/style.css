@@ -1,10 +1,15 @@
-/* Global styles */
+
+@font-face {
+  font-family: 'Arial MT';
+  src: url('client/font/ARLRDBD.ttf') format('truetype');
+}
+
 * {
 box-sizing: border-box;
 }
 
 body {
-font-family: Arial, sans-serif;
+font-family: Arial, Helvetica, sans-serif;
 font-size: 16px;
 margin: 0;
 padding: 0;
@@ -23,6 +28,7 @@ padding: 1rem;
 h1 {
 margin: 0;
 font-size: 2rem;
+font-weight: bolder;
 }
 
 #userIDslct {
@@ -31,11 +37,12 @@ color: white;
 border: none;
 font-size: 1rem;
 margin-left: 1rem;
-}
+} 
 
 body {
   background: #EFF7FF;
 }
+
 h2 {
   font-size: larger;
   display: inline;
@@ -62,6 +69,7 @@ h2 {
 .select-container select {
   margin-top: 10px;
 }
+
 
 #deleteLogEntry{
   float: right;
@@ -90,7 +98,6 @@ textarea{
   background: #EFF7FF;
 }
 
-
 .date-selector {
   padding: 4px;
   display: inline-block;
@@ -106,7 +113,7 @@ input.date-selector {
 
 div {
   background: #0052A3;
-  border-radius: 10px;
+  border-radius: 2px;
   padding: 5px;
   width: 100%;
   color: white;
@@ -123,7 +130,7 @@ template {
 
 article.entry {
   border: 2px solid #3399FF;
-  border-radius: 8px;
+  border-radius: 2px;
   padding-left: 5px;
   padding-bottom: 10px;
   width: 99%;
@@ -134,7 +141,6 @@ article.entry {
   margin-top: 2px;
   display:inline-grid;
 }
-
 
 aside {
   text-decoration-line: underline;
@@ -166,7 +172,6 @@ input {
   border-color: transparent;
 
 }
-
 
 .hidden {
   display: none; 

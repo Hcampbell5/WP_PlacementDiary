@@ -26,8 +26,6 @@ function logWeekChange() {
   console.log(el.logDateRange.value);
   localStorage.setItem("selectedWeek", el.logDateRange.value);
   location.reload();
-  //store the existing value+reload?
-  //load in new logs for the right date
 }
 
 // assigning the new date range for the logs to be shown
@@ -129,7 +127,6 @@ function changeUser() {
 function addEventListeners() {
   el.userSelector.addEventListener('change', changeUser);
   el.logDateRange.addEventListener('change', logWeekChange);
-
 }
 
 // preparing handlers for entry boxes

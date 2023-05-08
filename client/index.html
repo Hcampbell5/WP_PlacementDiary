@@ -16,9 +16,6 @@
 
 
 <main>
-
-
-
     <section id="logDisplay"> 
         <h2 id="logMonth" class='date-selector'> Month </h2> 
         <input type="date" name="logDateRange" id="logDateRange">  
@@ -53,8 +50,8 @@
             id="workCmp" 
             name="work-done" required
             size ="25"
-            cols="45" 
-            rows="3"
+            cols="60" 
+            rows="5"
             class="hide-on-button-press hidden"
         ></textarea>
 
@@ -63,13 +60,13 @@
             id="knGain" 
             name="knownledge-gained" required
             size ="25"
-            cols="45" 
+            cols="60" 
             rows="5"
             class="hide-on-button-press hidden"
         ></textarea>
 
         <label for="cmptcy" class="hidden">Competency</label>
-        <select name="competency-level" id="cmptcy" class="hide-on-button-press hidden">
+        <select name="competency-level" id="cmptcy" class="hide-on-button-press hidden">         
             <optgroup label="A - knowledge and understanding">
                 <option value="A1">A1</option>
                 <option value="A2">A2</option>
@@ -81,17 +78,24 @@
             <optgroup label="C - responsibility, management and leadership">
                 <option value="C1">C1</option>
                 <option value="C2">C2</option>
+                <option value="C3">C3</option>
             </optgroup>
             <optgroup label="D - communication and interpersonal skills">
                 <option value="D1">D1</option>
                 <option value="D2">D2</option>
+                <option value="D3">D3</option>
             </optgroup>
             <optgroup label="E - professional commmitment">
                 <option value="E1">E1</option>
                 <option value="E2">E2</option>
+                <option value="E3">E3</option>
+                <option value="E4">E4</option>
+                <option value="E5">E5</option>
             </optgroup>
+            <option disabled selected value=""></option>   
             </select>
         <input id=cmptcyList name="competency-list" type="text" class="hide-on-button-press hidden">
+        <input id=clearCmptcyList type=submit value="X" >
         <input id=submitEntry type=submit value="Submit" class="hide-on-button-press hidden">
     </div>
 

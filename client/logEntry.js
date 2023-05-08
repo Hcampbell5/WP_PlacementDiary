@@ -1,7 +1,7 @@
 const el = {}; 
 const app = {};
 
-//for each entry in app.data make a new article element to hold and display it 
+// for each entry in app.data make a new article element to hold and display it 
 function populateDiary() {
 el.logEntry_Date.value = app.data.logdate;
 el.logEntry_WC.value = app.data.work;
@@ -13,7 +13,7 @@ el.logEntry_CMPlist.value = app.data.competencies.replace(/\[|\]/g, '');
 function competencyList() {
   el.logEntry_CMPlist = document.querySelector('#cmptcyList')
 
-  if (el.logEntry_CMPlist.value === "") { //adds a comma before only when its the 2nd competency selected
+  if (el.logEntry_CMPlist.value == "") { // adds a comma before only when its the 2nd competency selected
     el.logEntry_CMPlist.value += `${el.logEntry_CMP.value}`;
   } else {
     el.logEntry_CMPlist.value += `, ${el.logEntry_CMP.value}`;
@@ -42,7 +42,7 @@ async function getLogEntry() {
     }
 }
 
-//creates JSON for log entry
+// creates JSON for log entry
 function createLogEntry () {
   debugger;
   let logEntryObj = {
@@ -59,7 +59,7 @@ function createLogEntry () {
   //sendLogEntry(logEntryObj);
 }
 
-//sends log entries to server
+// sends log entries to server
 async function sendLogEntry(logEntryObj) {
   const payload = {msg: logEntryObj };
   console.log('Payload', payload);

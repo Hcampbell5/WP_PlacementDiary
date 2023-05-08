@@ -7,7 +7,7 @@ function pageLoaded() {
   addEventListeners();
   debugger;
   var selectedWeek = localStorage.getItem("selectedWeek");
-  
+
   if (selectedWeek !== null) {
     el.logDateRange.valueAsDate = new Date(selectedWeek);
   } else {
@@ -26,8 +26,8 @@ function logWeekChange() {
   console.log(el.logDateRange.value);
   localStorage.setItem("selectedWeek", el.logDateRange.value);
   location.reload();
-  //store the existing value+reload?
-  //load in new logs for the right date
+  // store the existing value+reload?
+  // load in new logs for the right date
 }
 
 // assigning the new date range for the logs to be shown
@@ -121,9 +121,15 @@ async function sendLogEntry(logEntryObj) {
   }
 }
 
+// allows the changing of which users logs are showing
 function changeUser() {
   localStorage.setItem("selectedUser", el.userSelector.value);
   location.reload();
+}
+
+// clears the contents of the textbox containing the array of competencies
+function clearCompetencyList(){
+  el.logEntry_CMPlist.value = "" ;
 }
 
 // add event listeners for buttons
@@ -132,7 +138,9 @@ function addEventListeners() {
   el.showLogEntryForm.addEventListener('click', showLogEntryForm);
   el.userSelector.addEventListener('change', changeUser);
   el.logEntry_CMP.addEventListener('change', competencyList);
-  el.logDateRange.addEventListener('change', logWeekChange);
+  el.logDateRange.addEventListener('change', logWeekChange);  
+  el.logEntry_clearCMPlist.addEventListener('click', clearCompetencyList);
+
 
 }
 
@@ -147,6 +155,8 @@ function prepareHandles() {
   el.userSelector = document.querySelector('#userIDslct');
   el.logMonth = document.querySelector('#logMonth');
   el.logDateRange = document.querySelector('#logDateRange');
+  el.logEntry_clearCMPlist = document.querySelector('#clearCmptcyList');
+
 }
 
 // show or hide the logs Add Entry form
