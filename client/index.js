@@ -5,15 +5,9 @@ const app = {}; // stores the log data
 function pageLoaded() {
   prepareHandles();
   addEventListeners();
-  debugger;
   var selectedWeek = localStorage.getItem("selectedWeek");
-
-  if (selectedWeek !== null) {
-    el.logDateRange.valueAsDate = new Date(selectedWeek);
-  } else {
-    el.logDateRange.valueAsDate = new Date();
-  }
-
+  if (selectedWeek !== null) { el.logDateRange.valueAsDate = new Date(selectedWeek);} 
+  else { el.logDateRange.valueAsDate = new Date();}
   getLogWeek();
   var selectedUser = localStorage.getItem("selectedUser"); // checking local storage for which users logs to load
   el.userSelector.value = selectedUser;
@@ -55,19 +49,30 @@ function cloneTemplate(selector) {
 // for each entry in app.data make a new article element to hold and display it
 function populateDiary() {
   getLogEntries();
-  for (const entry of app.data) {
-    const article = cloneTemplate('#tplate-entry');
-    article.dataset.id = entry.id;
-    article.querySelector('.entry-date').textContent = entry.logdate;
-    article.querySelector('.entry-work').textContent = entry.work;
-    article.querySelector('.entry-xp').textContent = entry.xp;
-    article.querySelector('.entry-competency').textContent = entry.competencies.replace(/\[|\]/g, '');
-    article.querySelector('.entry-editLog').href = `/logEntry.html#${article.dataset.id}`;
-
+  debugger;
+  if (app.data.length === 0) { 
+    const message = document.createElement('p');
+    message.textContent = "No Logs Created Yet For This Week! Click Add Entry To Create One.";
+    message.classList.add('no-logs-message');
     const display = document.querySelector('#logDisplay');
-    display.append(article);
+    display.appendChild(message);
+  } else {
+    for (const entry of app.data) {
+      const article = cloneTemplate('#tplate-entry');
+      article.dataset.id = entry.id;
+      article.querySelector('.entry-date').textContent = entry.logdate;
+      article.querySelector('.entry-work').textContent = entry.work;
+      article.querySelector('.entry-xp').textContent = entry.xp;
+      article.querySelector('.entry-competency').textContent = entry.competencies.replace(/\[|\]/g, '');
+      article.querySelector('.entry-editLog').href = `/logEntry.html#${article.dataset.id}`;
+
+      const display = document.querySelector('#logDisplay');
+      display.append(article);
+    }
   }
 }
+
+
 
 // function for custom element allowing multiple competencies based off drop-down entries
 function competencyList() {
@@ -132,6 +137,25 @@ function clearCompetencyList(){
   el.logEntry_CMPlist.value = "" ;
 }
 
+// copies to clipboard a link to read-only mode of the log
+function shareLogClipboard() {
+  const link ='http://127.0.0.1:8080/logShare.html';
+  const input = document.createElement('input');
+  input.value = link;
+  document.body.appendChild(input);
+
+  input.select();
+  document.execCommand("copy");
+  document.body.removeChild(input);
+  console.log('Link copied to clipboard: ', link);
+  el.shareLogClipboard.value = ("Copied!");
+}
+
+// formats a printable copy of the log
+function printLog() {
+  window.print()
+}
+
 // add event listeners for buttons
 function addEventListeners() {
   el.submitLogEntry.addEventListener('click', createLogEntry);
@@ -140,7 +164,8 @@ function addEventListeners() {
   el.logEntry_CMP.addEventListener('change', competencyList);
   el.logDateRange.addEventListener('change', logWeekChange);  
   el.logEntry_clearCMPlist.addEventListener('click', clearCompetencyList);
-
+  el.shareLogClipboard.addEventListener('click', shareLogClipboard);
+  el.printLog.addEventListener('click', printLog);
 
 }
 
@@ -156,6 +181,10 @@ function prepareHandles() {
   el.logMonth = document.querySelector('#logMonth');
   el.logDateRange = document.querySelector('#logDateRange');
   el.logEntry_clearCMPlist = document.querySelector('#clearCmptcyList');
+  el.shareLogClipboard = document.querySelector('#shareLog');
+  el.printLog = document.querySelector('#printLog');
+
+
 
 }
 

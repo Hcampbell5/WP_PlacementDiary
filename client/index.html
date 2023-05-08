@@ -3,15 +3,17 @@
 <meta charset=utf-8>
 <script src="index.js" defer type="module"></script>
 <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="print.css" media="print">
+
 <link rel="shortcut icon" href="#">
 
 
 <header>
-<h1>PLACEMENT DIARY</h1>
-<select name="user-selector" id = "userIDslct" >
-    <option value="abc">TestUser</option>
-    <option value="def">TestUser2</option>
-</select>
+    <h1>PLACEMENT DIARY</h1>
+    <select name="user-selector" id = "userIDslct" >
+            <option value="abc">TestUser</option>
+            <option value="def">TestUser2</option>
+        </select>
 </header>
 
 
@@ -24,16 +26,16 @@
     <input id=showLogEntryForm 
         class=user_buttons 
         type=button 
-        value="Add Entry"/>
+        value="Add Entry  📝 "/>
     <input id=printLog 
         class=user_buttons 
         type=button 
-        value="Print Log"/>
+        value="Print Log  🖨️ "/>
     <input id=shareLog 
         class=user_buttons 
         type=button 
-        value="Share Log" 
-        onclick="location.href='/logShare.html';"/> 
+        value="Copy Read-Only Link 📋 "/> 
+    
 
 
     <div class="hide-on-button-press hidden">

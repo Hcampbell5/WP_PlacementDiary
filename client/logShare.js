@@ -3,6 +3,7 @@ const app = {}; // stores the log data
 
 // prepares the page, calls handler and event listener functions
 function pageLoaded() {
+
   prepareHandles();
   addEventListeners();
   debugger;
@@ -118,15 +119,23 @@ async function sendLogEntry(logEntryObj) {
   }
 }
 
+// changes the user whos logs are shown
 function changeUser() {
   localStorage.setItem("selectedUser", el.userSelector.value);
   location.reload();
+}
+
+// formats a printable copy of the log
+function printLog() {
+  window.print()
 }
 
 // add event listeners for buttons
 function addEventListeners() {
   el.userSelector.addEventListener('change', changeUser);
   el.logDateRange.addEventListener('change', logWeekChange);
+  el.printLog.addEventListener('click', printLog);
+
 }
 
 // preparing handlers for entry boxes
@@ -134,6 +143,7 @@ function prepareHandles() {
   el.userSelector = document.querySelector('#userIDslct');
   el.logMonth = document.querySelector('#logMonth');
   el.logDateRange = document.querySelector('#logDateRange');
+  el.printLog = document.querySelector('#printLog');
 }
 
 // show or hide the logs Add Entry form
