@@ -13,7 +13,6 @@
 [x] Add app.PUT for editing messages
 [x] Add in logEntry.js and .html
 [x] Write function to get entry ID for edit page
--- [ ] change the msg to log --
 [x] Edited entries need to send to where the ID is and change it using
 [x] Make date entry have no year
 [x] Hide Entry boxes with the Add Entry button
@@ -39,12 +38,14 @@
     [x] Add in datePicker to choose week of logs
 
 [ ] Add table for user data (useful when sharing logs)
-[ ] Show a message when the week has no log entries, urge user to update logs
-[ ] Add in print option
-[ ] Add in export options like PDF to manager
-    [ ] Fix logShare to use a href /entries/usrID/all   or  /usrID/week?
+[x] Show a message when the week has no log entries, urge user to update logs
+[x] Add in print option
+[x] Add in export options like PDF to manager
 [ ] Add in an email option
 [ ] Finalise css for good styling
     [ ] Add in media-selectors to format the site for web vs mobile
     [ ] Add in labels/asides for what things do e.g/ select user etc
-    [ ] Add in custom font Arial Rounded MT Bold
+    [x] Add in custom font Arial Rounded MT Bold
+
+
+[ ] Write a readme
