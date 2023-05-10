@@ -20,6 +20,12 @@ export async function getUserEntries(usrID, startDate, endDate) {
   return db.all('SELECT * FROM logEntries WHERE usrID = ? AND logDate BETWEEN ? AND ?', [usrID, startDate, endDate]); // Modify SQL query to filter by date range
 }
 
+// gets all entries belonging specific usrID
+export async function getAllUserEntries(usrID) {
+  const db = await dbConn;
+  return db.all('SELECT * FROM logEntries WHERE usrID = ?' , [usrID]);
+}
+
 // gets entry by specific entry id
 export async function getEntry(id) {
   // return data.find(entry => entry.id === id);

@@ -21,6 +21,12 @@ async function getUserEntries(req, res) {
   safeSend(result, res, 'no user entries found');
 }
 
+async function getAllUserEntries(req, res) {
+  const { usrID } = req.params;
+  const result = await db.getAllUserEntries(usrID); 
+  safeSend(result, res, 'no user entries found');
+}
+
 async function getEntry(req, res) {
   const result = await db.getEntry(req.params.id);
   safeSend(result, res, 'no user entries found');
@@ -51,6 +57,7 @@ function asyncWrap(f) {
 }
 
 app.get('/entries/:usrID/week', asyncWrap(getUserEntries));
+app.get('/entries/:usrID', asyncWrap(getAllUserEntries));
 app.get('/entries/:id', asyncWrap(getEntry));
 app.put('/entries/:id', express.json(), asyncWrap(putLogEntry));
 app.delete('/entries/:id', asyncWrap(deleteLogEntry));

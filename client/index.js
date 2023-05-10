@@ -1,15 +1,21 @@
 const el = {}; // stores all of the elements on page (textboxes, buttons etc)
 const app = {}; // stores the log data
+let viewMode;
 
 // prepares the page, calls handler and event listener functions
 function pageLoaded() {
+  debugger;
   prepareHandles();
   addEventListeners();
+
+  el.viewModeBtn.value = localStorage.getItem('viewModeValue');
+  viewMode = getViewMode();
+
   const selectedWeek = localStorage.getItem('selectedWeek');
   if (selectedWeek !== null) { el.logDateRange.valueAsDate = new Date(selectedWeek); } else { el.logDateRange.valueAsDate = new Date(); }
   getLogWeek();
-  const selectedUser = localStorage.getItem('selectedUser'); // checking local storage for which users logs to load
-  el.userSelector.value = selectedUser;
+
+  el.userSelector.value = localStorage.getItem('selectedUser'); // checking local storage for which users logs to load
   app.usrID = (el.userSelector.value);
 }
 
@@ -27,6 +33,7 @@ function prepareHandles() {
   el.logEntry_clearCMPlist = document.querySelector('#clearCmptcyList');
   el.shareLogClipboard = document.querySelector('#shareLog');
   el.printLog = document.querySelector('#printLog');
+  el.viewModeBtn = document.querySelector('#viewModeBtn');
 }
 
 // add event listeners for buttons
@@ -39,6 +46,7 @@ function addEventListeners() {
   el.logEntry_clearCMPlist.addEventListener('click', clearCompetencyList);
   el.shareLogClipboard.addEventListener('click', shareLogClipboard);
   el.printLog.addEventListener('click', printLog);
+  el.viewModeBtn.addEventListener('click', changeViewMode);
 }
 
 // assigning the new date range for the logs to be shown
@@ -62,11 +70,18 @@ function logWeekChange() {
 }
 
 // gets all log entries for an ID and places them inside of app
-async function getLogEntries() {
+async function getLogEntries(viewMode) {
   const logDateRange = getLogWeek();
   const [LogStartDate, LogEndDate] = logDateRange.split(',');
+  let response;
   // Use query parameters to specify the start and end date for the week
-  const response = await fetch(`/entries/${app.usrID}/week?startDate=${LogStartDate}&endDate=${LogEndDate}`);
+  debugger;
+  if (viewMode === 0) {
+    response = await fetch(`/entries/${app.usrID}/week?startDate=${LogStartDate}&endDate=${LogEndDate}`);
+  } else if (viewMode === 1){
+    response = await fetch(`/entries/${app.usrID}`);
+  }
+
   if (response.ok) {
     app.data = await response.json();
     console.log('logs loaded: ', app.data);
@@ -143,6 +158,28 @@ function changeUser() {
   location.reload();
 }
 
+// allows to change view mode from weekly to infinite
+function changeViewMode() {
+  if  (el.viewModeBtn.value === "Infinite View") {
+    el.viewModeBtn.value = "Weekly View";
+  } else {
+    el.viewModeBtn.value = "Infinite View";
+  }
+  localStorage.setItem('viewModeValue', el.viewModeBtn.value);
+  location.reload();
+}
+
+function getViewMode() {
+  if  (el.viewModeBtn.value === "Infinite View") {
+    viewMode = 1;
+    el.logDateRange.style.display = 'none';
+    el.logMonth.style.display = 'none';
+  } else {
+    viewMode = 0;
+  }
+  return viewMode;
+}
+
 // function for custom element allowing multiple competencies based off drop-down entries
 function competencyList() {
   el.logEntry_CMPlist = document.querySelector('#cmptcyList');
@@ -183,5 +220,5 @@ function showLogEntryForm() {
 }
 
 pageLoaded();
-await getLogEntries()
+await getLogEntries(viewMode)
 populateDiary();

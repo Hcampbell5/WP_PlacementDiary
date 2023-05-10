@@ -65,8 +65,6 @@ h2 {
   border: #0052A3;
   font-family: "Arial Rounded MT Bold";
   color: var(--text);
-
-  
 }
 
 input[type="button"] {
@@ -168,39 +166,40 @@ textarea {
   color: red;
   background-color: var(--background);
   color: var(--text);
-  }
+}
   
-  .date-selector {
+.date-selector {
   padding: 4px;
   display: inline-block;
   border-radius: 10px;
   margin-bottom: 2px;
-  }
+}
   
-  input.date-selector {
+input.date-selector {
   background-color: transparent;
   border: none;
   font-size: 20px;
-  }
+}
   
-  div[class="hide-on-button-press"] {
+div[class="hide-on-button-press"] {
   background: #0052A3;
   border-radius: 2px;
   padding: 5px;
   width: 100%;
   color: white;
   margin-top: 5px;
-  }
+}
   
-  label {
+label {
   text-align: left;
   display:grid;
-  }
-  template {
+}
+
+template {
   width: 100%;
-  }
+}
   
-  article.entry {
+article.entry {
   border: 2px solid #3399FF;
   border-radius: 2px;
   padding-left: 5px;
@@ -213,94 +212,53 @@ textarea {
   margin-top: 2px;
   display:inline-grid;
   color: var(--text);
-  }
+}
   
-  aside {
+aside {
   text-decoration-line: underline;
-  }
+}
   
-  p {
+p {
   text-decoration-thickness: 1px;
   margin-bottom: 1px;
-  }
+}
   
-  .user_buttons {
+.user_buttons {
   background-color: #0052A3;
   color: #EFF7FF;
   border-radius: 4px;
   margin-bottom: 2px;
-  }
+}
   
-  #logDisplay {
+#logDisplay {
   color: #03386e;
-  }
+}
   
-  .no-logs-message {
+.no-logs-message {
   font-weight:500;
   font-size: 20px;
   margin-bottom: 20px;
-  }
+}
   
-  input {
+input {
   border-radius: 4px;
   padding-left: 4px;
   margin-top: 5px;
   border-color: transparent;
+}
   
-  }
-  
-  .hidden {
+.hidden {
   display: none;
-  }
+}
   
-  a {
+a {
   color: var(--text);
-  }
+}
 
-  #weekView {
-    position: left;
-  }
-
-  .toggle-switch {
-    position: relative;
-    width: 40px;
-    height: 20px;
-    background-color: #9d9d9dcc;
-    border-radius: 30px;
-    overflow: hidden;
-    display: inline-grid;
-    align-items: center;
-    margin-top: 5px;
-    margin-bottom: -5px;
-    margin-left: 5px;
-  }
-  
-  .toggle-input {
-    display: none;
-  }
-  
-  .toggle-label {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 50%;
-    height: 100%;
-    background-color: #0052A3;
-    border-radius: 30px;
-    transition: transform 0.2s;
-    cursor: pointer;
-  }
-  
-  .toggle-input:checked + .toggle-label {
-    transform: translateX(100%);
-  }
-  
-  .label-text {
-    font-family: "Arial Rounded MT Bold";
-    margin-left: 5px;
-    margin-right: auto;
-    font-size: 15px;
-    color: var(--text);
-    display: inline-block;
-  }
-  
+#viewModeBtn {
+  margin-top: 30px;
+  margin-right: 7px;
+  display: inline;
+  float: right;
+  color: var(--text);
+}

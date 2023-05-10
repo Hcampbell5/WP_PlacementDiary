@@ -41,11 +41,12 @@
 [x] Show a message when the week has no log entries, urge user to update logs
 [x] Add in print option
 [x] Add in export options like PDF to manager
-[ ] Add in an email option
+[ ] Add in different view modes
 [ ] Finalise css for good styling
     [ ] Add in media-selectors to format the site for web vs mobile
     [ ] Add in labels/asides for what things do e.g/ select user etc
     [x] Add in custom font Arial Rounded MT Bold
+    [x] Build Dark mode
 
 
 [ ] Write a readme
