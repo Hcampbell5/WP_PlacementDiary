@@ -10,9 +10,9 @@
 
 <header>
     <h1>PLACEMENT DIARY</h1>
-    <select name="user-selector" id = "userIDslct" >
-            <option value="abc">TestUser</option>
-            <option value="def">TestUser2</option>
+    <select name="user-selector" id = "userIDslct" class=user_buttons >
+        <option value="abc">User1</option>
+        <option value="def">User2</option>
         </select>
 </header>
 
@@ -22,9 +22,11 @@
             class='date-selector'> Month </h2> 
         <input type="date" 
             name="logDateRange"
+            class=user_buttons
             id="logDateRange"/>
         <input id=viewModeBtn 
-            type="button" 
+            type="button"
+            class=user_buttons 
             value="Weekly View"/>  
     </section>
 
@@ -101,8 +103,7 @@
             </optgroup>
             <option disabled selected value=""></option>   
             </select>
-        <input id=cmptcyList name="competency-list" type="text" class="hide-on-button-press hidden">
-        <input id=clearCmptcyList type=submit value="X" >
+            <div id="selectedItems"></div>
         <input id=submitEntry type=submit value="Submit" class="hide-on-button-press hidden">
     </div>
 

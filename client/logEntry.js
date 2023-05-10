@@ -12,21 +12,25 @@ function pageLoaded() {
 function prepareHandles() {
   console.log('Handles Prepared');
   el.submitLogEntry = document.querySelector('#submitLogEntry');
+  el.cancelLogEdit = document.querySelector('#CancelLogEdit');
   el.deleteLogEntry = document.querySelector('#deleteLogEntry');
   el.logEntry_Date = document.querySelector('#logDate');
   el.logEntry_WC = document.querySelector('#workCmp');
   el.logEntry_KG = document.querySelector('#knGain');
   el.logEntry_CMP = document.querySelector('#cmptcy');
-  el.logEntry_CMPlist = document.querySelector('#cmptcyList');
-  el.logEntry_clearCMPlist = document.querySelector('#clearCmptcyList');
+  el.competenciesContainer = document.querySelector('#competenciesContainer');
+
 }
 
 // add event listeners for buttons
 function addEventListeners() {
   el.submitLogEntry.addEventListener('click', createLogEntry);
+  el.cancelLogEdit.addEventListener('click', () => {
+    window.location.href = 'index.html'; 
+  });
   el.deleteLogEntry.addEventListener('click', deleteLogEntry);
   el.logEntry_CMP.addEventListener('change', competencyList);
-  el.logEntry_clearCMPlist.addEventListener('click', clearCompetencyList);
+
 }
 
 // function to get log entry ID
@@ -51,18 +55,19 @@ function populateDiary() {
   el.logEntry_Date.value = app.data.logdate;
   el.logEntry_WC.value = app.data.work;
   el.logEntry_KG.value = app.data.xp;
-  el.logEntry_CMPlist.value = app.data.competencies.replace(/\[|\]/g, '');
+  loadCompetencies(app.data.competencies);
 }
 
 // creates JSON for log entry
 function createLogEntry() {
+  debugger;
   const logEntryObj = {
     id: app.id,
     usrID: app.data.usrID,
     logdate: el.logEntry_Date.value,
     work: el.logEntry_WC.value,
     xp: el.logEntry_KG.value,
-    competencies: `[${el.logEntry_CMPlist.value}]`,
+    competencies: getSelectedCompetencies()
   };
   sendLogEntry(logEntryObj);
   window.location.href = 'index.html';
@@ -114,22 +119,64 @@ async function deleteLogEntry() {
   window.location.href = 'index.html';
 }
 
+// function to fetch all of the competencies already selected and pass into the create element function
+function loadCompetencies(competenciesString) {
+  // Remove the square brackets from the string
+  const cleanedString = competenciesString.replace(/\[|\]/g, '');
+  // Split the string by commas to get individual competencies
+  const competencies = cleanedString.split(',').map(competency => competency.trim());
+  debugger;
+  competencies.forEach((competency) => {
+    const competencyElement = createCompetencyElement(competency);
+    el.competenciesContainer.appendChild(competencyElement);
+  });
+}
+
+// function to create Competency elements (tags)
+function createCompetencyElement(competency) {
+  debugger;
+  const competencyElement = document.createElement('div');
+  competencyElement.classList.add('selected-item');
+
+  const labelElement = document.createElement('span');
+  labelElement.textContent = competency;
+
+  const removeButton = document.createElement('button');
+  removeButton.textContent = 'x';
+  removeButton.addEventListener('click', () => {
+    competencyElement.remove();
+  });
+
+  competencyElement.appendChild(labelElement);
+  competencyElement.appendChild(removeButton);
+
+  return competencyElement;
+}
 
 // function for custom element allowing multiple competencies based off drop-down entries
 function competencyList() {
-  el.logEntry_CMPlist = document.querySelector('#cmptcyList');
+  const selectedOption = el.logEntry_CMP.options[el.logEntry_CMP.selectedIndex];
+     const selectedCMP = document.createElement('div');
+     selectedCMP.className = 'selected-item';
+     selectedCMP.innerHTML = `<span>${selectedOption.text}</span><button>X</button>`;
+     el.competenciesContainer.appendChild(selectedCMP);
+ 
+     // Add event listener to the remove button
+     const removeButton = selectedCMP.querySelector('button');
+     removeButton.addEventListener('click', function() {
+       selectedCMP.remove();
+     });
+ }
+ 
+// function to fetch and stringify the contents of all selected items
+function getSelectedCompetencies() {
+   debugger;
+   const selectedItems = Array.from(el.competenciesContainer.getElementsByClassName('selected-item'));
+   const values = selectedItems.map(item => item.querySelector('span').textContent);
+   const competencyString = '[' + values.join(', ') + ']';
+   return competencyString;
+ }
 
-  if (el.logEntry_CMPlist.value === '') { // adds a comma before only when its the 2nd competency selected
-    el.logEntry_CMPlist.value += `${el.logEntry_CMP.value}`;
-  } else {
-    el.logEntry_CMPlist.value += `, ${el.logEntry_CMP.value}`;
-  }
-}
-
-// clears the contents of the textbox containing the array of competencies
-function clearCompetencyList() {
-  el.logEntry_CMPlist.value = '';
-}
 
 pageLoaded();
 await getLogEntry();

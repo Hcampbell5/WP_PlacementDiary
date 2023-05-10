@@ -12,11 +12,11 @@ The Placement Diary Web Application is a web-based platform designed to help use
 ## Additional Features
 - Database Integration: The application uses a SQLite3 database to store diary entries, ensuring data persistence and efficient retrieval.
 - Deletion of Logs: Users have the ability to delete specific diary entries when they are no longer needed. [on edit, press delete]
-- Date Range Selection: The application allows users to view and filter entries based on specific weeks, making it easy to navigate and review past entries. [Select date within the dateselector and it will use that week Mon-Sun]
+- Date Range Selection: The application allows users to view and filter entries based on specific weeks, making it easy to navigate and review past entries. [Select date within the dateselector and it will use that week Mon-Sun - defaults to current week]
 - Viewing Modes: The application allows users to toggle between an infinite scroll or a more precise weekly view. [Toggled via the view button]
 - Multi-User : The application supports multiple user accounts, allowing different individuals to create their own separate placement diaries. [Change user using the drop down menu in the top right]
 - Dark Theme Based on User Preference: The application supports a dark theme option that can be automatically set based on the user's preference. If the user has a dark mode preference enabled on their device, the application will display the dark theme by default. [changes based on users system pref]
-- Competency Selector: To enable multiple competencies the drop down box fills out a text-box to its right which can be cleared using the red x if a mistake is made, trailing spaces and commas are removed behind the scenes.
+- Competency Selector: i created a custom element using div, span and a button - this element acts like a 'tag' with and x to remove competencies
 
 ## Installation
 To install, Extract the Zip file and then run these commands: 

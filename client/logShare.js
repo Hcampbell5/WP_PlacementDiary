@@ -17,6 +17,10 @@ function pageLoaded() {
   const selectedUser = localStorage.getItem('selectedUser'); // checking local storage for which users logs to load
   el.userSelector.value = selectedUser;
   app.usrID = (el.userSelector.value);
+  el.userSelector.textContent
+
+  const currentUser = (el.userSelector.options[el.userSelector.selectedIndex]).textContent;
+  el.title.textContent += (` - ${currentUser}`);
 }
 
 // assigning the new date range for the logs to be shown
@@ -99,6 +103,7 @@ function prepareHandles() {
   el.logMonth = document.querySelector('#logMonth');
   el.logDateRange = document.querySelector('#logDateRange');
   el.printLog = document.querySelector('#printLog');
+  el.title = document.querySelector('#title');
 }
 
 pageLoaded();
