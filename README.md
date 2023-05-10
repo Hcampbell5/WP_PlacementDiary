@@ -7,14 +7,16 @@ The Placement Diary Web Application is a web-based platform designed to help use
 - Server-Side Development: The application is built using Node.js, allowing for server-side rendering, handling user requests, and interacting with the database.
 - Responsive Design: The application is designed to be responsive, ensuring optimal viewing and usage experience across various devices, including desktops, tablets, and mobile phones.
 - Sharing Read-Only Links: Users can generate a read-only link for a specific entry, which can be shared with others. This allows users to share their diary entries with their placement supervisor and the university.
-
+- Print Logs: Users have the ability to print their diary logs for physical copies or easy reference. [removes user interface components]
 
 ## Additional Features
 - Database Integration: The application uses a SQLite3 database to store diary entries, ensuring data persistence and efficient retrieval.
-- Date Range Selection: The application allows users to view and filter entries based on specific weeks, making it easy to navigate and review past entries.
-- Viewing Modes: The application allows users to toggle between an infinite scroll or a more precise weekly view.
-- Multi-User : The application supports multiple user accounts, allowing different individuals to create their own separate placement diaries.
-- Dark Theme Based on User Preference: The application supports a dark theme option that can be automatically set based on the user's preference. If the user has a dark mode preference enabled on their device, the application will display the dark theme by default.
+- Deletion of Logs: Users have the ability to delete specific diary entries when they are no longer needed. [on edit, press delete]
+- Date Range Selection: The application allows users to view and filter entries based on specific weeks, making it easy to navigate and review past entries. [Select date within the dateselector and it will use that week Mon-Sun]
+- Viewing Modes: The application allows users to toggle between an infinite scroll or a more precise weekly view. [Toggled via the view button]
+- Multi-User : The application supports multiple user accounts, allowing different individuals to create their own separate placement diaries. [Change user using the drop down menu in the top right]
+- Dark Theme Based on User Preference: The application supports a dark theme option that can be automatically set based on the user's preference. If the user has a dark mode preference enabled on their device, the application will display the dark theme by default. [changes based on users system pref]
+- Competency Selector: To enable multiple competencies the drop down box fills out a text-box to its right which can be cleared using the red x if a mistake is made, trailing spaces and commas are removed behind the scenes.
 
 ## Installation
 To install, Extract the Zip file and then run these commands: 
@@ -28,7 +30,7 @@ To install, Extract the Zip file and then run these commands:
 - Express.js
 
 
-### TO DO
+## TO DO
 [x] create basic UI with entry forms and a ul for messages
 
 [x] Create a form and layout which can be used with templates
