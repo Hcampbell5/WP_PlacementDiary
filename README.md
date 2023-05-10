@@ -1,34 +1,34 @@
-## Placement Diary Web Application
+# Placement Diary Web Application
 
 The Placement Diary Web Application is a web-based platform designed to help users track and document their placement experiences during internships or job placements and share their progress with both their manager and the university. It provides a convenient way to log daily activities, work completed, knowledge and skills gained as well as integrating the ICTtech Engineering Competency standards, allowing users to maintain a comprehensive diary of their placement journey.
 
-# Core Features
+## Core Features
 - Creation and Management of Log entries: Users can create new diary entries, providing details such as date, work completed, knowledge gained and competencies. They can also edit existing entries as needed. 
 - Server-Side Development: The application is built using Node.js, allowing for server-side rendering, handling user requests, and interacting with the database.
 - Responsive Design: The application is designed to be responsive, ensuring optimal viewing and usage experience across various devices, including desktops, tablets, and mobile phones.
 - Sharing Read-Only Links: Users can generate a read-only link for a specific entry, which can be shared with others. This allows users to share their diary entries with their placement supervisor and the university.
 
 
-# Additional Features
+## Additional Features
 - Database Integration: The application uses a SQLite3 database to store diary entries, ensuring data persistence and efficient retrieval.
 - Date Range Selection: The application allows users to view and filter entries based on specific weeks, making it easy to navigate and review past entries.
 - Viewing Modes: The application allows users to toggle between an infinite scroll or a more precise weekly view.
 - Multi-User : The application supports multiple user accounts, allowing different individuals to create their own separate placement diaries.
 - Dark Theme Based on User Preference: The application supports a dark theme option that can be automatically set based on the user's preference. If the user has a dark mode preference enabled on their device, the application will display the dark theme by default.
 
-# Installation
+## Installation
 To install, Extract the Zip file and then run these commands: 
  - npm install
  - npm start
 
-# Technologies Used
+## Technologies Used
 - HTML, CSS, Javascript
 - Node.js
 - SQLite3
 - Express.js
 
 
-# TO DO
+### TO DO
 [x] create basic UI with entry forms and a ul for messages
 
 [x] Create a form and layout which can be used with templates
