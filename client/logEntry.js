@@ -1,28 +1,32 @@
 const el = {};
 const app = {};
 
-// for each entry in app.data make a new article element to hold and display it
-function populateDiary() {
-  el.logEntry_Date.value = app.data.logdate;
-  el.logEntry_WC.value = app.data.work;
-  el.logEntry_KG.value = app.data.xp;
-  el.logEntry_CMPlist.value = app.data.competencies.replace(/\[|\]/g, '');
+// prepares the page, calls handler and listener functions
+function pageLoaded() {
+  prepareHandles();
+  addEventListeners();
+  getEntryId();
 }
 
-// function for custom element allowing multiple competencies based off drop-down entries
-function competencyList() {
+// preparing handlers for entry boxes
+function prepareHandles() {
+  console.log('Handles Prepared');
+  el.submitLogEntry = document.querySelector('#submitLogEntry');
+  el.deleteLogEntry = document.querySelector('#deleteLogEntry');
+  el.logEntry_Date = document.querySelector('#logDate');
+  el.logEntry_WC = document.querySelector('#workCmp');
+  el.logEntry_KG = document.querySelector('#knGain');
+  el.logEntry_CMP = document.querySelector('#cmptcy');
   el.logEntry_CMPlist = document.querySelector('#cmptcyList');
-
-  if (el.logEntry_CMPlist.value === '') { // adds a comma before only when its the 2nd competency selected
-    el.logEntry_CMPlist.value += `${el.logEntry_CMP.value}`;
-  } else {
-    el.logEntry_CMPlist.value += `, ${el.logEntry_CMP.value}`;
-  }
+  el.logEntry_clearCMPlist = document.querySelector('#clearCmptcyList');
 }
 
-// clears the contents of the textbox containing the array of competencies
-function clearCompetencyList() {
-  el.logEntry_CMPlist.value = '';
+// add event listeners for buttons
+function addEventListeners() {
+  el.submitLogEntry.addEventListener('click', createLogEntry);
+  el.deleteLogEntry.addEventListener('click', deleteLogEntry);
+  el.logEntry_CMP.addEventListener('change', competencyList);
+  el.logEntry_clearCMPlist.addEventListener('click', clearCompetencyList);
 }
 
 // function to get log entry ID
@@ -42,12 +46,20 @@ async function getLogEntry() {
   }
 }
 
+// for each entry in app.data make a new article element to hold and display it
+function populateDiary() {
+  el.logEntry_Date.value = app.data.logdate;
+  el.logEntry_WC.value = app.data.work;
+  el.logEntry_KG.value = app.data.xp;
+  el.logEntry_CMPlist.value = app.data.competencies.replace(/\[|\]/g, '');
+}
+
 // creates JSON for log entry
 function createLogEntry() {
   const logEntryObj = {
     id: app.id,
     usrID: app.data.usrID,
-    logdate: app.data.logdate,
+    logdate: el.logEntry_Date.value,
     work: el.logEntry_WC.value,
     xp: el.logEntry_KG.value,
     competencies: `[${el.logEntry_CMPlist.value}]`,
@@ -102,32 +114,21 @@ async function deleteLogEntry() {
   window.location.href = 'index.html';
 }
 
-// preparing handlers for entry boxes
-function prepareHandles() {
-  console.log('Handles Prepared');
-  el.submitLogEntry = document.querySelector('#submitLogEntry');
-  el.deleteLogEntry = document.querySelector('#deleteLogEntry');
-  el.logEntry_Date = document.querySelector('#logDate');
-  el.logEntry_WC = document.querySelector('#workCmp');
-  el.logEntry_KG = document.querySelector('#knGain');
-  el.logEntry_CMP = document.querySelector('#cmptcy');
+
+// function for custom element allowing multiple competencies based off drop-down entries
+function competencyList() {
   el.logEntry_CMPlist = document.querySelector('#cmptcyList');
-  el.logEntry_clearCMPlist = document.querySelector('#clearCmptcyList');
+
+  if (el.logEntry_CMPlist.value === '') { // adds a comma before only when its the 2nd competency selected
+    el.logEntry_CMPlist.value += `${el.logEntry_CMP.value}`;
+  } else {
+    el.logEntry_CMPlist.value += `, ${el.logEntry_CMP.value}`;
+  }
 }
 
-// add event listeners for buttons
-function addEventListeners() {
-  el.submitLogEntry.addEventListener('click', createLogEntry);
-  el.deleteLogEntry.addEventListener('click', deleteLogEntry);
-  el.logEntry_CMP.addEventListener('change', competencyList);
-  el.logEntry_clearCMPlist.addEventListener('click', clearCompetencyList);
-}
-
-// prepares the page, calls handler and listener functions
-function pageLoaded() {
-  prepareHandles();
-  addEventListeners();
-  getEntryId();
+// clears the contents of the textbox containing the array of competencies
+function clearCompetencyList() {
+  el.logEntry_CMPlist.value = '';
 }
 
 pageLoaded();

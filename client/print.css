@@ -11,7 +11,8 @@
     #userIDslct,
     .user_buttons,
     .entry-editLog,
-    .hidden {
+    .hidden,
+    .hide-on-button-press {
         display: none;
     }
     

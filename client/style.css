@@ -181,7 +181,7 @@ input.date-selector {
   font-size: 20px;
 }
   
-div[class="hide-on-button-press"] {
+div {
   background: #0052A3;
   border-radius: 2px;
   padding: 5px;
@@ -221,6 +221,7 @@ aside {
 p {
   text-decoration-thickness: 1px;
   margin-bottom: 1px;
+  color: var(--text);
 }
   
 .user_buttons {
@@ -260,5 +261,5 @@ a {
   margin-right: 7px;
   display: inline;
   float: right;
-  color: var(--text);
+  color: #ffffff;
 }

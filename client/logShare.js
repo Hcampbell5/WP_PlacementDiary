@@ -21,7 +21,6 @@ function pageLoaded() {
 
 // assigning the new date range for the logs to be shown
 function logWeekChange() {
-  console.log(el.logDateRange.value);
   localStorage.setItem('selectedWeek', el.logDateRange.value);
   location.reload();
 }

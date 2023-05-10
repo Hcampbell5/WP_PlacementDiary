@@ -57,7 +57,7 @@ function asyncWrap(f) {
 }
 
 app.get('/entries/:usrID/week', asyncWrap(getUserEntries));
-app.get('/entries/:usrID', asyncWrap(getAllUserEntries));
+app.get('/entries/:usrID/all', asyncWrap(getAllUserEntries));
 app.get('/entries/:id', asyncWrap(getEntry));
 app.put('/entries/:id', express.json(), asyncWrap(putLogEntry));
 app.delete('/entries/:id', asyncWrap(deleteLogEntry));
