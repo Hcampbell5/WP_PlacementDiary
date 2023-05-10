@@ -1,28 +1,47 @@
-@font-face {
-  font-family: 'Arial MT';
-  src: url('client/font/ARLRDBD.ttf') format('truetype');
+:root { /* Assigning values to custom variables for colour theme */
+  --background-light: #EFF7FF;
+  --background-dark: #333333;
+  --text-light: #032a52;
+  --text-dark: #ffffff;
+}
+
+/* custom variable for dark colour scheme */
+@media (prefers-color-scheme: dark) {
+  body {
+    --background: var(--background-dark);
+    --text: var(--text-dark);
+  }
+}
+/* custom variable for light colour scheme */
+@media (prefers-color-scheme: light) {
+  body {
+    --background: var(--background-light);
+    --text: var(--text-light);
+  }
 }
 
 * {
-box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
-font-family: Arial, Helvetica, sans-serif;
-font-size: 15px;
-margin: 0;
-padding: 5px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 15px;
+  margin: 0;
+  padding: 5px;
+  background-color: var(--background);
+  color: var(--text);
 }
 
 /* Header */
 header {
-font-family: "Arial Rounded MT Bold";
-background-color: #0052A3;
-color: white;
-display: flex;
-justify-content: space-between;
-align-items: center;
-padding: 1rem;
+  font-family: "Arial Rounded MT Bold";
+  background-color: #0052A3;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
 }
 
 h1 {
@@ -33,15 +52,11 @@ h1 {
 }
 
 #userIDslct {
-background-color: transparent;
-color: white;
-border: none;
-font-size: 1rem;
-margin-left: 1rem;
-} 
-
-body {
-  background: #EFF7FF;
+  background-color: transparent;
+  color: white;
+  border: none;
+  font-size: 1rem;
+  margin-left: 1rem;
 }
 
 h2 {
@@ -49,6 +64,9 @@ h2 {
   display: inline;
   border: #0052A3;
   font-family: "Arial Rounded MT Bold";
+  color: var(--text);
+
+  
 }
 
 input[type="button"] {
@@ -63,10 +81,14 @@ input[type="button"]:active {
 
 input[type="submit"] {
   transition: transform 0.2s;
+  background-color: var(--background);
+  color: var(--text);
 }
 
 input[type="submit"]:active {
   transform: scale(0.9);
+  background-color: var(--background);
+  color: var(--text);
 }
 
 input[id="logDateRange"] {
@@ -75,8 +97,9 @@ input[id="logDateRange"] {
   font-size: 16px;
   width: 150px;
   display: inline;
-  background-color:#EFF7FF;
-  border-color:#3399FF;
+  background-color: var(--background);
+  color: var(--text);
+  border-color: #3399FF;
   border-width: 1px;
 }
 
@@ -86,8 +109,15 @@ input[id="logDate"] {
   display: inline;
   border-width: 1px;
   margin-bottom: 5px;
+  background-color: var(--background);
+  color: var(--text);
 }
 
+textarea {
+  background-color: var(--background);
+  color: var(--text);
+  border-radius: 4px;
+}
 
 .entry-editLog {
   text-decoration: underline;
@@ -110,8 +140,7 @@ input[id="logDate"] {
   margin-top: 10px;
 }
 
-
-#deleteLogEntry{
+#deleteLogEntry {
   display: flex;
   float: right;
   background-color: rgb(237, 2, 2);
@@ -122,56 +151,56 @@ input[id="logDate"] {
   border-color: transparent;
   border-radius: 2px;
   padding: 1px;
-
+  background-color: var(--background);
+  color: var(--text);
 }
+
 #cmptcyList {
   border-color: transparent;
   display: inline-flex;
+  background-color: var(--background);
+  color: var(--text);
 }
 
 #clearCmptcyList {
   margin-left: -10px;
-  background-color: white;
   font-weight: bolder;
   color: red;
-}
-
-textarea{
-  border-radius: 4px;
-  background: #EFF7FF;
-}
-
-.date-selector {
+  background-color: var(--background);
+  color: var(--text);
+  }
+  
+  .date-selector {
   padding: 4px;
   display: inline-block;
   border-radius: 10px;
   margin-bottom: 2px;
-}
-
-input.date-selector {
+  }
+  
+  input.date-selector {
   background-color: transparent;
   border: none;
   font-size: 20px;
-}
-
-div {
+  }
+  
+  div[class="hide-on-button-press"] {
   background: #0052A3;
   border-radius: 2px;
   padding: 5px;
   width: 100%;
   color: white;
   margin-top: 5px;
-}
-
-label {
+  }
+  
+  label {
   text-align: left;
   display:grid;
-}
-template {
+  }
+  template {
   width: 100%;
-}
-
-article.entry {
+  }
+  
+  article.entry {
   border: 2px solid #3399FF;
   border-radius: 2px;
   padding-left: 5px;
@@ -183,49 +212,95 @@ article.entry {
   margin-bottom: 2px;
   margin-top: 2px;
   display:inline-grid;
-}
-
-aside {
+  color: var(--text);
+  }
+  
+  aside {
   text-decoration-line: underline;
-}
-
-p {
+  }
+  
+  p {
   text-decoration-thickness: 1px;
   margin-bottom: 1px;
-}
-
-.user_buttons {
+  }
+  
+  .user_buttons {
   background-color: #0052A3;
   color: #EFF7FF;
   border-radius: 4px;
   margin-bottom: 2px;
-}
-
-#logDisplay {
+  }
+  
+  #logDisplay {
   color: #03386e;
-}
-
-.no-logs-message {
+  }
+  
+  .no-logs-message {
   font-weight:500;
   font-size: 20px;
   margin-bottom: 20px;
-}
-
-input {
+  }
+  
+  input {
   border-radius: 4px;
   padding-left: 4px;
   margin-top: 5px;
   border-color: transparent;
+  
+  }
+  
+  .hidden {
+  display: none;
+  }
+  
+  a {
+  color: var(--text);
+  }
 
-}
+  #weekView {
+    position: left;
+  }
 
-.hidden {
-  display: none; 
-}
-
-a {
-  color: black;
-}
-
-
-
+  .toggle-switch {
+    position: relative;
+    width: 40px;
+    height: 20px;
+    background-color: #9d9d9dcc;
+    border-radius: 30px;
+    overflow: hidden;
+    display: inline-grid;
+    align-items: center;
+    margin-top: 5px;
+    margin-bottom: -5px;
+    margin-left: 5px;
+  }
+  
+  .toggle-input {
+    display: none;
+  }
+  
+  .toggle-label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    background-color: #0052A3;
+    border-radius: 30px;
+    transition: transform 0.2s;
+    cursor: pointer;
+  }
+  
+  .toggle-input:checked + .toggle-label {
+    transform: translateX(100%);
+  }
+  
+  .label-text {
+    font-family: "Arial Rounded MT Bold";
+    margin-left: 5px;
+    margin-right: auto;
+    font-size: 15px;
+    color: var(--text);
+    display: inline-block;
+  }
+  
