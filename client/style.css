@@ -81,6 +81,8 @@ input[type="submit"] {
   transition: transform 0.2s;
   background-color: var(--background);
   color: var(--text);
+  cursor: pointer;
+  
 }
 
 input[type="submit"]:active {
@@ -151,22 +153,10 @@ textarea {
   padding: 1px;
   background-color: var(--background);
   color: var(--text);
+  margin-top: 5px;
 }
 
-#cmptcyList {
-  border-color: transparent;
-  display: inline-flex;
-  background-color: var(--background);
-  color: var(--text);
-}
 
-#clearCmptcyList {
-  margin-left: -10px;
-  font-weight: bolder;
-  color: red;
-  background-color: var(--background);
-  color: var(--text);
-}
   
 .date-selector {
   padding: 4px;
@@ -229,6 +219,7 @@ p {
   color: #EFF7FF;
   border-radius: 4px;
   margin-bottom: 2px;
+  cursor: pointer;
 }
   
 #logDisplay {
@@ -262,4 +253,26 @@ a {
   display: inline;
   float: right;
   color: #ffffff;
+}
+
+.selected-item {
+  display: inline-block;
+  background-color: var(--background);
+  border-radius: 5px;
+  color: var(--text);
+  border-radius: 10px;
+  width: auto;
+  margin: 2px;
+}
+
+.selected-item span {
+  margin-right: 5px;
+}
+
+.selected-item button {
+  border: none;
+  background-color: transparent;
+  font-size: 18px;
+  color: red;
+  cursor: pointer;
 }

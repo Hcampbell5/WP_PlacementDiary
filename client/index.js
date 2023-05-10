@@ -26,11 +26,11 @@ function prepareHandles() {
   el.logEntry_WC = document.querySelector('#workCmp');
   el.logEntry_KG = document.querySelector('#knGain');
   el.logEntry_CMP = document.querySelector('#cmptcy');
+  el.selected_CMP_Container = document.querySelector('#selectedItems')
   el.showLogEntryForm = document.querySelector('#showLogEntryForm');
   el.userSelector = document.querySelector('#userIDslct');
   el.logMonth = document.querySelector('#logMonth');
   el.logDateRange = document.querySelector('#logDateRange');
-  el.logEntry_clearCMPlist = document.querySelector('#clearCmptcyList');
   el.shareLogClipboard = document.querySelector('#shareLog');
   el.printLog = document.querySelector('#printLog');
   el.viewModeBtn = document.querySelector('#viewModeBtn');
@@ -43,7 +43,6 @@ function addEventListeners() {
   el.userSelector.addEventListener('change', changeUser);
   el.logEntry_CMP.addEventListener('change', competencyList);
   el.logDateRange.addEventListener('change', logWeekChange);
-  el.logEntry_clearCMPlist.addEventListener('click', clearCompetencyList);
   el.shareLogClipboard.addEventListener('click', shareLogClipboard);
   el.printLog.addEventListener('click', printLog);
   el.viewModeBtn.addEventListener('click', changeViewMode);
@@ -126,7 +125,7 @@ function createLogEntry() {
     logdate: el.logEntry_Date.value,
     work: el.logEntry_WC.value,
     xp: el.logEntry_KG.value,
-    competencies: `[${el.logEntry_CMPlist.value.slice(0, -2)}]`,
+    competencies: getSelectedCompetencies()
   };
   sendLogEntry(logEntryObj);
 }
@@ -182,13 +181,25 @@ function getViewMode() {
 
 // function for custom element allowing multiple competencies based off drop-down entries
 function competencyList() {
-  el.logEntry_CMPlist = document.querySelector('#cmptcyList');
-  el.logEntry_CMPlist.value += `${el.logEntry_CMP.value}, `;
+ const selectedOption = el.logEntry_CMP.options[el.logEntry_CMP.selectedIndex];
+    const selectedCMP = document.createElement('div');
+    selectedCMP.className = 'selected-item';
+    selectedCMP.innerHTML = `<span>${selectedOption.text}</span><button>X</button>`;
+    el.selected_CMP_Container.appendChild(selectedCMP);
+
+    // Add event listener to the remove button
+    const removeButton = selectedCMP.querySelector('button');
+    removeButton.addEventListener('click', function() {
+      selectedCMP.remove();
+    });
 }
 
-// clears the contents of the textbox containing the array of competencies
-function clearCompetencyList() {
-  el.logEntry_CMPlist.value = null;
+// function to fetch and stringify the contents of all selected items
+function getSelectedCompetencies() {
+  const selectedItems = Array.from(el.selected_CMP_Container.getElementsByClassName('selected-item'));
+  const values = selectedItems.map(item => item.querySelector('span').textContent);
+  const competencyString = '[' + values.join(', ') + ']';
+  return competencyString;
 }
 
 // copies to clipboard a link to read-only mode of the log
