@@ -12,9 +12,10 @@
     .user_buttons,
     .entry-editLog,
     .hidden,
-    .hide-on-button-press {
+    .hide-on-button-press,
+    #viewModeLbl,
+    #viewModeBtn {
         display: none;
     }
-    
   }
   

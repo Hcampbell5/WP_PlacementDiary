@@ -29,7 +29,6 @@ To install, Extract the Zip file and then run these commands:
 - SQLite3
 - Express.js
 
-
 ## TO DO
 - [x] create basic UI with entry forms and a ul for messages.
 - [x] Create a form and layout which can be used with templates.
@@ -68,3 +67,8 @@ To install, Extract the Zip file and then run these commands:
     - [x] Build Dark mode.
     - [x] Add border colours etc to beautify.
 - [x] Write a readme.
+    Add in Documentation for : 
+        The tooltip
+        The Competency selector
+        The Cancel buttons
+        

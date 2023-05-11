@@ -22,6 +22,7 @@ function pageLoaded() {
 function prepareHandles() {
   console.log('Handles Prepared');
   el.submitLogEntry = document.querySelector('#submitEntry');
+  el.cancelLogEntry = document.querySelector('#CancelLogEdit');
   el.logEntry_Date = document.querySelector('#logDate');
   el.logEntry_WC = document.querySelector('#workCmp');
   el.logEntry_KG = document.querySelector('#knGain');
@@ -39,6 +40,7 @@ function prepareHandles() {
 // add event listeners for buttons and other selectors
 function addEventListeners() {
   el.submitLogEntry.addEventListener('click', createLogEntry);
+  el.cancelLogEntry.addEventListener('click', cancelLogEntry);
   el.showLogEntryForm.addEventListener('click', showLogEntryForm);
   el.userSelector.addEventListener('change', changeUser);
   el.logEntry_CMP.addEventListener('change', competencyList);
@@ -150,6 +152,16 @@ async function sendLogEntry(logEntryObj) {
   }
 }
 
+// clears textboxes, competencies and resets date then closes the entry fields when user cancels
+function cancelLogEntry() {
+  el.logEntry_Date.valueAsDate = new Date();
+  el.logEntry_WC.value = '';
+  el.logEntry_KG.value = '';
+  el.logEntry_CMP.value = '';
+  el.selected_CMP_Container.innerHTML = '';
+  showLogEntryForm();
+}
+
 // allows you to change which users logs are showing
 function changeUser() {
   localStorage.setItem('selectedUser', el.userSelector.value);
@@ -181,20 +193,28 @@ function getViewMode() {
 
 // function for custom element allowing multiple competencies based off drop-down entries
 function competencyList() {
- const selectedOption = el.logEntry_CMP.options[el.logEntry_CMP.selectedIndex];
+  const selectedOption = el.logEntry_CMP.options[el.logEntry_CMP.selectedIndex];
+  const selectedText = selectedOption.text;
+  
+  
+  const competencies = Array.from(el.selected_CMP_Container.getElementsByClassName('selected-item')); // Check if the competency is already selected
+  const isAlreadySelected = competencies.some(item => item.querySelector('span').textContent === selectedText);
+  
+  if (!isAlreadySelected) {
     const selectedCMP = document.createElement('div');
     selectedCMP.className = 'selected-item';
-    selectedCMP.innerHTML = `<span>${selectedOption.text}</span><button>X</button>`;
+    selectedCMP.innerHTML = `<span>${selectedText}</span><button>x</button>`;
     el.selected_CMP_Container.appendChild(selectedCMP);
-
-    // Add event listener to the remove button
-    const removeButton = selectedCMP.querySelector('button');
+  
+    
+    const removeButton = selectedCMP.querySelector('button'); // Add event listener to the remove button
     removeButton.addEventListener('click', function() {
       selectedCMP.remove();
     });
+  }
 }
 
-// function to fetch and stringify the contents of all selected items
+// function to fetch and stringify the contents of all selected items to send to database
 function getSelectedCompetencies() {
   const selectedItems = Array.from(el.selected_CMP_Container.getElementsByClassName('selected-item'));
   const values = selectedItems.map(item => item.querySelector('span').textContent);

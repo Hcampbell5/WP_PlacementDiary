@@ -24,6 +24,7 @@
             name="logDateRange"
             class=user_buttons
             id="logDateRange"/>
+        <label for="viewModeBtn" id="viewModeLbl">View Mode:</label>
         <input id=viewModeBtn 
             type="button"
             class=user_buttons 
@@ -73,8 +74,10 @@
             rows="5"
             class="hide-on-button-press hidden"
         ></textarea>
-
-        <label for="cmptcy" class="hidden">Competency</label>
+        <div class="tooltip-container">        
+            <label for="cmptcy" class="hidden">Competency</label>
+            <div class="tooltip" title="This log includes support for ICTtech competency codes A trough E to properly categorise the work you complete. Check out www.theiet.org to find out more"> ? </div>
+        </div>
         <select name="competency-level" id="cmptcy" class="hide-on-button-press hidden">         
             <optgroup label="A - knowledge and understanding">
                 <option value="A1">A1</option>
@@ -105,6 +108,8 @@
             </select>
             <div id="selectedItems"></div>
         <input id=submitEntry type=submit value="Submit" class="hide-on-button-press hidden">
+        <input id=CancelLogEdit type=submit value="Cancel" >
+
     </div>
 
 </main>

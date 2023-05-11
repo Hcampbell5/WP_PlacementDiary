@@ -30,7 +30,6 @@ function addEventListeners() {
   });
   el.deleteLogEntry.addEventListener('click', deleteLogEntry);
   el.logEntry_CMP.addEventListener('change', competencyList);
-
 }
 
 // function to get log entry ID
@@ -132,7 +131,7 @@ function loadCompetencies(competenciesString) {
   });
 }
 
-// function to create Competency elements (tags)
+// function to create Competency elements (tags) for the already selected competencies
 function createCompetencyElement(competency) {
   debugger;
   const competencyElement = document.createElement('div');
@@ -153,22 +152,30 @@ function createCompetencyElement(competency) {
   return competencyElement;
 }
 
-// function for custom element allowing multiple competencies based off drop-down entries
+// function for adding more custom elements allowing multiple competencies based off drop-down entries
 function competencyList() {
   const selectedOption = el.logEntry_CMP.options[el.logEntry_CMP.selectedIndex];
-     const selectedCMP = document.createElement('div');
-     selectedCMP.className = 'selected-item';
-     selectedCMP.innerHTML = `<span>${selectedOption.text}</span><button>X</button>`;
-     el.competenciesContainer.appendChild(selectedCMP);
- 
-     // Add event listener to the remove button
-     const removeButton = selectedCMP.querySelector('button');
-     removeButton.addEventListener('click', function() {
-       selectedCMP.remove();
-     });
- }
- 
-// function to fetch and stringify the contents of all selected items
+  const selectedText = selectedOption.text;
+  
+  const competencies = Array.from(el.competenciesContainer.getElementsByClassName('selected-item')); // Check if the competency is already selected
+
+  const isAlreadySelected = competencies.some(item => item.querySelector('span').textContent === selectedText);
+  
+  if (!isAlreadySelected) {
+    const selectedCMP = document.createElement('div');
+    selectedCMP.className = 'selected-item';
+    selectedCMP.innerHTML = `<span>${selectedText}</span><button>x</button>`;
+    el.competenciesContainer.appendChild(selectedCMP);
+  
+    const removeButton = selectedCMP.querySelector('button'); // Add event listener to the remove button
+
+    removeButton.addEventListener('click', function() {
+      selectedCMP.remove();
+    });
+  }
+}
+
+// function to fetch and stringify the contents of all selected items to send to database
 function getSelectedCompetencies() {
    debugger;
    const selectedItems = Array.from(el.competenciesContainer.getElementsByClassName('selected-item'));
@@ -176,7 +183,6 @@ function getSelectedCompetencies() {
    const competencyString = '[' + values.join(', ') + ']';
    return competencyString;
  }
-
 
 pageLoaded();
 await getLogEntry();

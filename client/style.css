@@ -155,8 +155,6 @@ textarea {
   color: var(--text);
   margin-top: 5px;
 }
-
-
   
 .date-selector {
   padding: 4px;
@@ -247,22 +245,32 @@ a {
   color: var(--text);
 }
 
+#viewModeLbl{
+  margin-left: 3px;
+  display: inline-block;
+  vertical-align: middle;
+  font-weight: bold;
+  color: var(--text);}
+
 #viewModeBtn {
   margin-top: 30px;
   margin-right: 7px;
-  display: inline;
-  float: right;
+  display: inline-block;
   color: #ffffff;
 }
 
 .selected-item {
-  display: inline-block;
+  display: inline-flex;
   background-color: var(--background);
-  border-radius: 5px;
   color: var(--text);
   border-radius: 10px;
   width: auto;
-  margin: 2px;
+  margin-left: -5px;
+  margin-right: 8px;
+  height: 25px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: bold;
 }
 
 .selected-item span {
@@ -270,9 +278,57 @@ a {
 }
 
 .selected-item button {
+  display: inline-flex;
+  align-items: center;
   border: none;
   background-color: transparent;
   font-size: 18px;
   color: red;
+  font-weight: bold;
   cursor: pointer;
+}
+
+.tooltip-container {
+  padding: -15px;  
+  margin-top: -13px;
+  margin-left: -4px;
+  margin-bottom: -13px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  background-color: transparent;
+  width: 100%;
+
+}
+
+.tooltip {
+  font-size: 13px;
+  position: right;
+  display: inline-block;
+  cursor: help;
+  margin-bottom: 3px;
+  width: 20px;
+}
+
+.tooltip::after {
+  font-size: 10px;
+  content: attr(title);
+  position: absolute;
+  visibility: hidden;
+  background-color: #000;
+  color: #fff;
+  text-align: center;
+  padding: 5px;
+  border-radius: 4px;
+  white-space: pre-wrap;
+  z-index: 1;
+  top: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 5px;
+}
+
+.tooltip:hover::after {
+  visibility: visible;
+  opacity: 1;
 }
