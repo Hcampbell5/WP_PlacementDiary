@@ -7,15 +7,22 @@ function pageLoaded() {
   prepareHandles();
   addEventListeners();
 
-  el.viewModeBtn.value = localStorage.getItem('viewModeValue');
+  if (localStorage.getItem('viewModeValue') != null ) { // checking local storage for which view mode to use
+    el.viewModeBtn.value = localStorage.getItem('viewModeValue');
+  }
   viewMode = getViewMode();
 
-  const selectedWeek = localStorage.getItem('selectedWeek');
-  if (selectedWeek !== null) { el.logDateRange.valueAsDate = new Date(selectedWeek); } else { el.logDateRange.valueAsDate = new Date(); }
+  if (localStorage.getItem('selectedWeek') !== null) { // checking local storage for which week to load
+    el.logDateRange.valueAsDate = new Date(localStorage.getItem('selectedWeek')); 
+  } else { 
+    el.logDateRange.valueAsDate = new Date(); 
+  }
   getLogWeek();
 
-  el.userSelector.value = localStorage.getItem('selectedUser'); // checking local storage for which users logs to load
-  app.usrID = (el.userSelector.value);
+  if (localStorage.getItem('selectedUser') != null) { // checking local storage for which users logs to load
+    el.userSelector.value = localStorage.getItem('selectedUser');
+    app.usrID = (el.userSelector.value);
+  }  
 }
 
 // preparing handlers for entry boxes and buttons
@@ -94,10 +101,17 @@ async function getLogEntries(viewMode) {
 function populateDiary() {
   if (app.data.length === 0) { // if no logs are fetched 
     const message = document.createElement('p');
-    message.textContent = 'No Logs Created Yet For This Week! Click Add Entry To Create One.';
-    message.classList.add('no-logs-message');
-    const display = document.querySelector('#logDisplay');
-    display.appendChild(message);
+    if (app.usrID != null) {
+      message.textContent = 'No Logs Created Yet For This Week! Click Add Entry To Create One.'; // displays a message to inform you why no logs shown
+      message.classList.add('no-logs-message');
+      const display = document.querySelector('#logDisplay');
+      display.appendChild(message);
+    } else {
+      message.textContent = 'Please Select a user to show logs.'; // displays a message to inform you why no logs shown
+      message.classList.add('no-logs-message');
+      const display = document.querySelector('#logDisplay');
+      display.appendChild(message);
+    }
   } else {
     for (const entry of app.data) { // for every log that was fetched
       const article = cloneTemplate('#tplate-entry');
