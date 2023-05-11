@@ -16,36 +16,26 @@ function pageLoaded() {
 
   el.userSelector.value = localStorage.getItem('selectedUser'); // checking local storage for which users logs to load
   app.usrID = (el.userSelector.value);
+
+  const currentUser = (el.userSelector.options[el.userSelector.selectedIndex]).textContent;
+  el.title.textContent += (` - ${currentUser}`);
 }
 
 // preparing handlers for entry boxes and buttons
 function prepareHandles() {
   console.log('Handles Prepared');
-  el.submitLogEntry = document.querySelector('#submitEntry');
-  el.cancelLogEntry = document.querySelector('#CancelLogEdit');
-  el.logEntry_Date = document.querySelector('#logDate');
-  el.logEntry_WC = document.querySelector('#workCmp');
-  el.logEntry_KG = document.querySelector('#knGain');
-  el.logEntry_CMP = document.querySelector('#cmptcy');
-  el.selected_CMP_Container = document.querySelector('#selectedItems')
-  el.showLogEntryForm = document.querySelector('#showLogEntryForm');
   el.userSelector = document.querySelector('#userIDslct');
   el.logMonth = document.querySelector('#logMonth');
   el.logDateRange = document.querySelector('#logDateRange');
-  el.shareLogClipboard = document.querySelector('#shareLog');
   el.printLog = document.querySelector('#printLog');
+  el.title = document.querySelector('#title');
   el.viewModeBtn = document.querySelector('#viewModeBtn');
 }
 
 // add event listeners for buttons and other selectors
 function addEventListeners() {
-  el.submitLogEntry.addEventListener('click', createLogEntry);
-  el.cancelLogEntry.addEventListener('click', cancelLogEntry);
-  el.showLogEntryForm.addEventListener('click', showLogEntryForm);
   el.userSelector.addEventListener('change', changeUser);
-  el.logEntry_CMP.addEventListener('change', competencyList);
   el.logDateRange.addEventListener('change', logWeekChange);
-  el.shareLogClipboard.addEventListener('click', shareLogClipboard);
   el.printLog.addEventListener('click', printLog);
   el.viewModeBtn.addEventListener('click', changeViewMode);
 }
@@ -94,7 +84,7 @@ async function getLogEntries(viewMode) {
 function populateDiary() {
   if (app.data.length === 0) { // if no logs are fetched 
     const message = document.createElement('p');
-    message.textContent = 'No Logs Created Yet For This Week! Click Add Entry To Create One.';
+    message.textContent = 'No Logs Created Yet For This Week!';
     message.classList.add('no-logs-message');
     const display = document.querySelector('#logDisplay');
     display.appendChild(message);
@@ -106,8 +96,6 @@ function populateDiary() {
       article.querySelector('.entry-work').textContent = entry.work;
       article.querySelector('.entry-xp').textContent = entry.xp;
       article.querySelector('.entry-competency').textContent = entry.competencies.replace(/\[|\]/g, '');
-      article.querySelector('.entry-editLog').href = `/logEntry.html#${article.dataset.id}`;
-
       const display = document.querySelector('#logDisplay');
       display.append(article);
     }
@@ -118,48 +106,6 @@ function populateDiary() {
 function cloneTemplate(selector) {
   const tplate = document.querySelector(selector);
   return tplate.content.firstElementChild.cloneNode(true);
-}
-
-// creates JSON for log entry
-function createLogEntry() {
-  const logEntryObj = {
-    usrID: app.usrID,
-    logdate: el.logEntry_Date.value,
-    work: el.logEntry_WC.value,
-    xp: el.logEntry_KG.value,
-    competencies: getSelectedCompetencies()
-  };
-  sendLogEntry(logEntryObj);
-}
-
-// sends log entries to server
-async function sendLogEntry(logEntryObj) {
-  const payload = { msg: logEntryObj };
-  console.log('Payload', payload);
-
-  const response = await fetch('/entries', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(payload),
-  });
-
-  if (response.ok) {
-    location.reload();
-    const updatedLogEntry = await response.json();
-    console.log('new log entry sent', updatedLogEntry);
-  } else {
-    console.log('failed to send log entry', response);
-  }
-}
-
-// clears textboxes, competencies and resets date then closes the entry fields when user cancels
-function cancelLogEntry() {
-  el.logEntry_Date.valueAsDate = new Date();
-  el.logEntry_WC.value = '';
-  el.logEntry_KG.value = '';
-  el.logEntry_CMP.value = '';
-  el.selected_CMP_Container.innerHTML = '';
-  showLogEntryForm();
 }
 
 // allows you to change which users logs are showing
@@ -191,63 +137,11 @@ function getViewMode() {
   return viewMode;
 }
 
-// function for custom element allowing multiple competencies based off drop-down entries
-function competencyList() {
-  const selectedOption = el.logEntry_CMP.options[el.logEntry_CMP.selectedIndex];
-  const selectedText = selectedOption.text;
-  
-  
-  const competencies = Array.from(el.selected_CMP_Container.getElementsByClassName('selected-item')); // Check if the competency is already selected
-  const isAlreadySelected = competencies.some(item => item.querySelector('span').textContent === selectedText);
-  
-  if (!isAlreadySelected) {
-    const selectedCMP = document.createElement('div');
-    selectedCMP.className = 'selected-item';
-    selectedCMP.innerHTML = `<span>${selectedText}</span><button>x</button>`;
-    el.selected_CMP_Container.appendChild(selectedCMP);
-  
-    
-    const removeButton = selectedCMP.querySelector('button'); // Add event listener to the remove button
-    removeButton.addEventListener('click', function() {
-      selectedCMP.remove();
-    });
-  }
-}
-
-// function to fetch and stringify the contents of all selected items to send to database
-function getSelectedCompetencies() {
-  const selectedItems = Array.from(el.selected_CMP_Container.getElementsByClassName('selected-item'));
-  const values = selectedItems.map(item => item.querySelector('span').textContent);
-  const competencyString = '[' + values.join(', ') + ']';
-  return competencyString;
-}
-
-// copies to clipboard a link to read-only mode of the log
-function shareLogClipboard() {
-  const link = 'http://127.0.0.1:8080/logShare.html'; // link to the read-only version
-  const input = document.createElement('input');
-  input.value = link;
-  document.body.appendChild(input);
-  input.select();
-  document.execCommand('copy'); // copies the input value to clipboard
-  document.body.removeChild(input);
-  console.log('Link copied to clipboard: ', link);
-  el.shareLogClipboard.value = ('Copied!');
-}
-
 // Opens up print menu 
 function printLog() {
   window.print(); // prints out using the custom print CSS
 }
 
-// show or hide the logs Add Entry form
-function showLogEntryForm() {
-  el.logEntry_Date.valueAsDate = new Date();
-  const elements = document.querySelectorAll('.hide-on-button-press, .hidden');
-  for (let i = 0; i < elements.length; i++) {
-    elements[i].classList.toggle('hidden');
-  }
-}
 
 pageLoaded();
 await getLogEntries(viewMode)

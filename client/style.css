@@ -1,33 +1,334 @@
+:root { /* Assigning values to custom variables for colour theme */
+  --background-light: #EFF7FF;
+  --background-dark: #333333;
+  --text-light: #032a52;
+  --text-dark: #ffffff;
+}
+
+/* custom variable for dark colour scheme */
+@media (prefers-color-scheme: dark) {
+  body {
+    --background: var(--background-dark);
+    --text: var(--text-dark);
+  }
+}
+/* custom variable for light colour scheme */
+@media (prefers-color-scheme: light) {
+  body {
+    --background: var(--background-light);
+    --text: var(--text-light);
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
 body {
-  background: white;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 15px;
+  margin: 0;
+  padding: 5px;
+  background-color: var(--background);
+  color: var(--text);
+}
+
+/* Header */
+header {
+  font-family: "Arial Rounded MT Bold";
+  background-color: #0052A3;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
 }
 
 h1 {
-  text-align: center;
-  background-color: grey;
-  color: black; 
-  padding: 15px;
-  width: 100%
-}
-main {
-  padding: 10px;
+  margin: 0;
+  font-family: "Arial Rounded MT Bold";
+  font-size: 2rem;
+  font-weight: bold;
 }
 
-ul {
-  list-style-type: none;
+#userIDslct {
+  background-color: transparent;
+  color: white;
+  border: none;
+  font-size: 1rem;
+  margin-left: 1rem;
 }
 
+h2 {
+  font-size: 25px;
+  display: inline;
+  border: #0052A3;
+  font-family: "Arial Rounded MT Bold";
+  color: var(--text);
+}
+
+input[type="button"] {
+  transition: transform 0.2s;
+  background-color: #0052A3;
+}
+
+input[type="button"]:active {
+  transform: scale(0.9);
+  background-color: #003870; 
+}
+
+input[type="submit"] {
+  transition: transform 0.2s;
+  background-color: var(--background);
+  color: var(--text);
+  cursor: pointer;
+  
+}
+
+input[type="submit"]:active {
+  transform: scale(0.9);
+  background-color: var(--background);
+  color: var(--text);
+}
+
+input[id="logDateRange"] {
+  padding: 2px;
+  border-radius: 2px;
+  font-size: 16px;
+  width: 150px;
+  display: inline;
+  background-color: var(--background);
+  color: var(--text);
+  border-color: #3399FF;
+  border-width: 1px;
+}
+
+input[id="logDate"] {
+  padding: 2px;
+  border-radius: 4px;
+  display: inline;
+  border-width: 1px;
+  margin-bottom: 5px;
+  background-color: var(--background);
+  color: var(--text);
+}
+
+textarea {
+  background-color: var(--background);
+  color: var(--text);
+  border-radius: 4px;
+}
+
+.entry-editLog {
+  text-decoration: underline;
+  font-size: smaller;
+  margin-top: 10px;
+}
+
+.textarea-container {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.select-container {
+  display: flex;
+  flex-direction: column-reverse;
+  margin-bottom: 10px;
+}
+
+.select-container select {
+  margin-top: 10px;
+}
+
+#deleteLogEntry {
+  display: flex;
+  float: right;
+  background-color: rgb(237, 2, 2);
+  color: rgb(243, 212, 212);
+}
+
+#cmptcy {
+  border-color: transparent;
+  border-radius: 2px;
+  padding: 1px;
+  background-color: var(--background);
+  color: var(--text);
+  margin-top: 5px;
+}
+  
+.date-selector {
+  padding: 4px;
+  display: inline-block;
+  border-radius: 10px;
+  margin-bottom: 2px;
+}
+  
+input.date-selector {
+  background-color: transparent;
+  border: none;
+  font-size: 20px;
+}
+  
 div {
-  background: grey;
-  padding: 10px;
+  background: #0052A3;
+  border-radius: 2px;
+  padding: 5px;
   width: 100%;
+  color: white;
+  margin-top: 5px;
+}
+  
+label {
+  text-align: left;
+  display:grid;
 }
 
 template {
   width: 100%;
 }
+  
 article.entry {
-  border: 1px solid;
-  padding: 10px;
+  border: 2px solid #3399FF;
+  border-radius: 2px;
+  padding-left: 5px;
+  padding-bottom: 10px;
+  width: 99%;
+  background: #3399FF;
+  font-size: 15px;
+  line-height: 1;
+  margin-bottom: 2px;
+  margin-top: 2px;
+  display:inline-grid;
+  color: var(--text);
+}
+  
+aside {
+  text-decoration-line: underline;
+}
+  
+p {
+  text-decoration-thickness: 1px;
+  margin-bottom: 1px;
+  color: var(--text);
+}
+  
+.user_buttons {
+  background-color: #0052A3;
+  color: #EFF7FF;
+  border-radius: 4px;
+  margin-bottom: 2px;
+  cursor: pointer;
+}
+  
+#logDisplay {
+  color: #03386e;
+}
+  
+.no-logs-message {
+  font-weight:500;
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+  
+input {
+  border-radius: 4px;
+  padding-left: 4px;
+  margin-top: 5px;
+  border-color: transparent;
+}
+  
+.hidden {
+  display: none;
+}
+  
+a {
+  color: var(--text);
+}
+
+#viewModeLbl{
+  margin-left: 3px;
+  display: inline-block;
+  vertical-align: middle;
+  font-weight: bold;
+  color: var(--text);}
+
+#viewModeBtn {
+  margin-top: 30px;
+  margin-right: 7px;
+  display: inline-block;
+  color: #ffffff;
+}
+
+.selected-item {
+  display: inline-flex;
+  background-color: var(--background);
+  color: var(--text);
+  border-radius: 10px;
+  width: auto;
+  margin-left: -5px;
+  margin-right: 8px;
+  height: 25px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.selected-item span {
+  margin-right: 5px;
+}
+
+.selected-item button {
+  display: inline-flex;
+  align-items: center;
+  border: none;
+  background-color: transparent;
+  font-size: 18px;
+  color: red;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.tooltip-container {
+  padding: -15px;  
+  margin-top: -13px;
+  margin-left: -4px;
+  margin-bottom: -13px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  background-color: transparent;
   width: 100%;
+
+}
+
+.tooltip {
+  font-size: 13px;
+  position: right;
+  display: inline-block;
+  cursor: help;
+  margin-bottom: 3px;
+  width: 20px;
+}
+
+.tooltip::after {
+  font-size: 10px;
+  content: attr(title);
+  position: absolute;
+  visibility: hidden;
+  background-color: #000;
+  color: #fff;
+  text-align: center;
+  padding: 5px;
+  border-radius: 4px;
+  white-space: pre-wrap;
+  z-index: 1;
+  top: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 5px;
+}
+
+.tooltip:hover::after {
+  visibility: visible;
+  opacity: 1;
 }

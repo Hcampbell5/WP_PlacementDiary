@@ -3,55 +3,127 @@
 <meta charset=utf-8>
 <script src="index.js" defer type="module"></script>
 <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="print.css" media="print">
+
+<link rel="shortcut icon" href="#">
 
 
 <header>
-<h1>Placement Diary</h1>
+    <h1>PLACEMENT DIARY</h1>
+    <select name="user-selector" id = "userIDslct" class=user_buttons >
+        <option value="abc">User1</option>
+        <option value="def">User2</option>
+        </select>
 </header>
 
 <main>
-    <section id="month">
-        <h2> March </h2>
+    <section id="logDisplay"> 
+        <h2 id="logMonth" 
+            class='date-selector'> Month </h2> 
+        <input type="date" 
+            name="logDateRange"
+            class=user_buttons
+            id="logDateRange"/>
+        <label for="viewModeBtn" id="viewModeLbl">View Mode:</label>
+        <input id=viewModeBtn 
+            type="button"
+            class=user_buttons 
+            value="Weekly View"/>  
     </section>
-</main>
 
+    <input id=showLogEntryForm 
+        class=user_buttons 
+        type=button 
+        value="Add Entry  📝 "/>
+    <input id=printLog 
+        class=user_buttons 
+        type=button 
+        value="Print Log  🖨️ "/>
+    <input id=shareLog 
+        class=user_buttons 
+        type=button 
+        value="Copy Read-Only Link 📋 "/> 
+    
+
+
+    <div class="hide-on-button-press hidden">
+        <label for="logDate" class="hidden" >Entry Date</label>
+        <input type="date" 
+            id="logDate"
+            name ="log-date"
+            min="01-01"
+            class="hide-on-button-press hidden"
+            lang="en-GB">
+
+        <label for="workcmp" class="hidden">Work completed</label>
+        <textarea type="text" 
+            id="workCmp" 
+            name="work-done" required
+            size ="25"
+            cols="60" 
+            rows="5"
+            class="hide-on-button-press hidden"
+        ></textarea>
+
+        <label for="knGain" class="hidden">Knowledge Gained</label>
+        <textarea type="text" 
+            id="knGain" 
+            name="knownledge-gained" required
+            size ="25"
+            cols="60" 
+            rows="5"
+            class="hide-on-button-press hidden"
+        ></textarea>
+        <div class="tooltip-container">        
+            <label for="cmptcy" class="hidden">Competency</label>
+            <div class="tooltip" title="This log includes support for ICTtech competency codes A trough E to properly categorise the work you complete. Check out www.theiet.org to find out more"> ? </div>
+        </div>
+        <select name="competency-level" id="cmptcy" class="hide-on-button-press hidden">         
+            <optgroup label="A - knowledge and understanding">
+                <option value="A1">A1</option>
+                <option value="A2">A2</option>
+            </optgroup>
+            <optgroup label="B - design, development and problem solving">
+                <option value="B1">B1</option>
+                <option value="B2">B2</option>
+            </optgroup>
+            <optgroup label="C - responsibility, management and leadership">
+                <option value="C1">C1</option>
+                <option value="C2">C2</option>
+                <option value="C3">C3</option>
+            </optgroup>
+            <optgroup label="D - communication and interpersonal skills">
+                <option value="D1">D1</option>
+                <option value="D2">D2</option>
+                <option value="D3">D3</option>
+            </optgroup>
+            <optgroup label="E - professional commmitment">
+                <option value="E1">E1</option>
+                <option value="E2">E2</option>
+                <option value="E3">E3</option>
+                <option value="E4">E4</option>
+                <option value="E5">E5</option>
+            </optgroup>
+            <option disabled selected value=""></option>   
+            </select>
+            <div id="selectedItems"></div>
+        <input id=submitEntry type=submit value="Submit" class="hide-on-button-press hidden">
+        <input id=CancelLogEdit type=submit value="Cancel" >
+
+    </div>
+
+</main>
 
 <template id="tplate-entry">
     <article class = "entry">
-        <aside>Date</aside>
+        <!-- <aside>Date :</aside> -->
         <p class ="entry-date">Date</p>
-        <aside>Work Completed</aside>
+        <!--<aside>Work Completed :</aside> -->
         <p class ="entry-work">Work Completed</p>
-        <aside>Knowledge Gain</aside>
+        <!--<aside>Knowledge Gain :</aside> -->
         <p class ="entry-xp">Knowledge Used</p>
-        <aside>Competency Levels</aside>
+        <!--<aside>Competency Levels :</aside> -->
         <p class ="entry-competency">Competency Level</p>
+        <a id=editlog class="entry-editLog">Edit Log</a>
     </article>
 </template>
-
-
-<input id=showLogEntryForm type=button value="Add Entry" onclick="showLogEntryForm()" />
-
-<div>
-    <label for="logDate">Entry Date</label>
-    <input type="date" id="logDate"
-    name ="log-date"
-            min="2023-01-01">
-
-    <label for="workcmp">Work completed</label>
-    <input type="text" id="workCmp" 
-    name="work-done" required
-        size ="25">
-
-    <label for="knGain">Knowledge Gained</label>
-    <input type="text" id="knGain" 
-    name="knownledge-gained" required
-        size ="25">
-
-    <label for="competency">Competency</label>
-    <input type="text" id="cmptcy" 
-    name="competency-level" required
-        size ="2">
-
-    <input id=submitEntry type=submit value="Submit">
-</div>

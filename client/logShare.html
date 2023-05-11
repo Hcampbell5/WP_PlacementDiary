@@ -1,0 +1,46 @@
+<!doctype html>
+<title>My Placement Diary </title>
+<meta charset=utf-8>
+<script src="logShare.js" defer type="module"></script>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="print.css" media="print">
+<link rel="shortcut icon" href="#">
+
+
+<header>
+    <h1 id="title">PLACEMENT DIARY</h1>
+        <select name="user-selector" id = "userIDslct" >
+            <option value="abc">User1</option>
+            <option value="def">User2</option>
+        </select>
+    </header>
+    
+    <main>
+        <section id="logDisplay">
+            <h2 id="logMonth" class='date-selector'> Month </h2> 
+            <input type="date" name="logDateRange" id="logDateRange"> 
+            <label for="viewModeBtn" id="viewModeLbl">View Mode:</label>
+            <input id=viewModeBtn 
+                type="button"
+                class=user_buttons 
+                value="Weekly View"/>    
+        </section>
+    </main>
+
+<template id="tplate-entry">
+    <article class = "entry">
+        <!-- <aside>Date :</aside> -->
+        <p class ="entry-date">Date</p>
+        <!--<aside>Work Completed :</aside> -->
+        <p class ="entry-work">Work Completed</p>
+        <!--<aside>Knowledge Gain :</aside> -->
+        <p class ="entry-xp">Knowledge Used</p>
+        <!--<aside>Competency Levels :</aside> -->
+        <p class ="entry-competency">Competency Level</p>
+    </article>
+</template>
+
+<input id=printLog 
+class=user_buttons 
+type=button 
+value="Print Log  🖨️"/>

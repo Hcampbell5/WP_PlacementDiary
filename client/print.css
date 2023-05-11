@@ -1,0 +1,21 @@
+@media print {
+    header, 
+    title, 
+    footer, 
+    nav,
+    #printLog {
+        display: none !important;
+    }
+
+    #logDateRange, 
+    #userIDslct,
+    .user_buttons,
+    .entry-editLog,
+    .hidden,
+    .hide-on-button-press,
+    #viewModeLbl,
+    #viewModeBtn {
+        display: none;
+    }
+  }
+  
