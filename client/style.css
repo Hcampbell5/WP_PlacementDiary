@@ -33,7 +33,6 @@ body {
   color: var(--text);
 }
 
-/* Header */
 header {
   font-family: "Arial Rounded MT Bold";
   background-color: #0052A3;
@@ -51,16 +50,16 @@ h1 {
   font-weight: bold;
 }
 
+
 #userIDslct {
   background-color: transparent;
   color: white;
-  border: none;
-  font-size: 1rem;
-  margin-left: 1rem;
+  font-size: 15px;
+  width: auto;
 }
 
 h2 {
-  font-size: 25px;
+  font-size: 20px;
   display: inline;
   border: #0052A3;
   font-family: "Arial Rounded MT Bold";
