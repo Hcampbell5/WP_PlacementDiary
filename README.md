@@ -27,7 +27,7 @@ The Placement Diary Web Application is a web-based platform designed to help use
 ## Core Features
 - Creation and Management of Log entries: Users can create new diary entries, providing details such as date, work completed, knowledge gained and competencies. They can also edit existing entries as needed. 
 - Server-Side Development: The application is built using Node.js, allowing for server-side rendering, handling user requests, and interacting with the database.
-- Responsive Design: The application is designed to be responsive, ensuring optimal viewing and usage experience across various devices, including desktops, tablets, and mobile phones.
+- Responsive Design: The application is designed to be responsive, ensuring optimal viewing and usage experience across various devices, including desktops, tablets, and mobile phones. [When <600px wide buttons and entries get larger to account for screen size]
 - Sharing Read-Only Links: Users can generate a read-only link for a specific entry, which can be shared with others. This allows users to share their diary entries with their placement supervisor and the university.
 - Print Logs: Users have the ability to print their diary logs for physical copies or easy reference. [removes user interface components]
 
