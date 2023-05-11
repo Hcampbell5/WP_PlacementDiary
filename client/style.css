@@ -33,7 +33,6 @@ body {
   color: var(--text);
 }
 
-/* Header */
 header {
   font-family: "Arial Rounded MT Bold";
   background-color: #0052A3;
@@ -54,19 +53,20 @@ h1 {
 #userIDslct {
   background-color: transparent;
   color: white;
-  border: none;
-  font-size: 1rem;
-  margin-left: 1rem;
+  font-size: 15px;
+  width: auto;
 }
 
+/* month/date displat  */
 h2 {
-  font-size: 25px;
+  font-size: 20px;
   display: inline;
   border: #0052A3;
   font-family: "Arial Rounded MT Bold";
   color: var(--text);
 }
 
+/* animations for buttons */
 input[type="button"] {
   transition: transform 0.2s;
   background-color: #0052A3;
@@ -82,7 +82,6 @@ input[type="submit"] {
   background-color: var(--background);
   color: var(--text);
   cursor: pointer;
-  
 }
 
 input[type="submit"]:active {
@@ -186,7 +185,8 @@ label {
 template {
   width: 100%;
 }
-  
+
+/*  Styles for the entries themselves */
 article.entry {
   border: 2px solid #3399FF;
   border-radius: 2px;
@@ -237,14 +237,16 @@ input {
   border-color: transparent;
 }
   
+/* hides entry fields */
 .hidden {
   display: none;
 }
-  
+
 a {
   color: var(--text);
 }
 
+/* style for the viewmode buttons */
 #viewModeLbl{
   margin-left: 3px;
   display: inline-block;
@@ -259,6 +261,7 @@ a {
   color: #ffffff;
 }
 
+/* style for custom competencies */
 .selected-item {
   display: inline-flex;
   background-color: var(--background);
@@ -288,6 +291,7 @@ a {
   cursor: pointer;
 }
 
+/* style for the tooltip */
 .tooltip-container {
   padding: -15px;  
   margin-top: -13px;
@@ -332,3 +336,73 @@ a {
   visibility: visible;
   opacity: 1;
 }
+
+/* Custom styles for <600px screen */
+@media only screen and (max-width: 600px) {
+  
+  header {
+    padding: 5px;
+  }
+
+  h1 {
+    font-size: 30px;
+  }
+
+  h2 {
+    font-size: 30px;
+  }
+
+  #logDisplay {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .date-selector {
+    margin-bottom: 5px;
+  }
+
+  #logDateRange {
+    width: 100%;
+  }
+
+  .tooltip {
+    top: -10px;
+    right: -25px;
+    font-size: 10px;
+    padding: 1px 3px;
+  }
+
+  article.entry {
+    font-size: 18px;
+  }
+  .entry-editLog {
+    font-size: 15px;
+  }
+
+  input[type="button"],
+  input[type="submit"] {
+    padding: 5px 10px;
+    font-size: 18px;
+  }
+
+  input[id="logDateRange"],
+  input[id="logDate"] {
+    padding: 5px;
+    font-size: 18px;
+    width: 200px;
+  }
+
+  textarea {
+    font-size: 18px;
+    width: 100%;
+  }
+
+  #cmptcy {
+    padding: 8px;
+    font-size: 15px;
+  }
+
+
+
+}
+  

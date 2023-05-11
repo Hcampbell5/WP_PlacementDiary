@@ -17,13 +17,13 @@ const dbConn = init();
 // gets all entries belonging specific usrID within a range
 export async function getUserEntries(usrID, startDate, endDate) {
   const db = await dbConn;
-  return db.all('SELECT * FROM logEntries WHERE usrID = ? AND logDate BETWEEN ? AND ?', [usrID, startDate, endDate]); // Modify SQL query to filter by date range
+  return db.all('SELECT * FROM logEntries WHERE usrID = ? AND logDate BETWEEN ? AND ? ORDER BY logdate DESC', [usrID, startDate, endDate]); // Modify SQL query to filter by date range
 }
 
 // gets all entries belonging specific usrID
 export async function getAllUserEntries(usrID) {
   const db = await dbConn;
-  return db.all('SELECT * FROM logEntries WHERE usrID = ?' , [usrID]);
+  return db.all('SELECT * FROM logEntries WHERE usrID = ? ORDER BY logdate DESC' , [usrID]);
 }
 
 // gets entry by specific entry id

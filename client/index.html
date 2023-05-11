@@ -10,74 +10,41 @@
 
 <header>
     <h1>PLACEMENT DIARY</h1>
-    <select name="user-selector" id = "userIDslct" class=user_buttons >
+    <select name="user-selector" id="userIDslct" class="user_buttons">
+        <option disabled selected value="">-Please choose User-</option>
         <option value="abc">User1</option>
         <option value="def">User2</option>
-        </select>
+    </select>
 </header>
+
 
 <main>
     <section id="logDisplay"> 
-        <h2 id="logMonth" 
-            class='date-selector'> Month </h2> 
-        <input type="date" 
-            name="logDateRange"
-            class=user_buttons
-            id="logDateRange"/>
+        <h2 id="logMonth" class='date-selector'> Month </h2> 
+        <input type="date" name="logDateRange" class=user_buttons id="logDateRange"/>
         <label for="viewModeBtn" id="viewModeLbl">View Mode:</label>
-        <input id=viewModeBtn 
-            type="button"
-            class=user_buttons 
-            value="Weekly View"/>  
+        <input id=viewModeBtn type="button" class=user_buttons value="Weekly View"/>  
     </section>
 
-    <input id=showLogEntryForm 
-        class=user_buttons 
-        type=button 
-        value="Add Entry  📝 "/>
-    <input id=printLog 
-        class=user_buttons 
-        type=button 
-        value="Print Log  🖨️ "/>
-    <input id=shareLog 
-        class=user_buttons 
-        type=button 
-        value="Copy Read-Only Link 📋 "/> 
-    
-
+    <input id=showLogEntryForm class=user_buttons type=button value="Add Entry  📝 "/>
+    <input id=printLog class=user_buttons type=button value="Print Log  🖨️ "/>
+    <input id=shareLog class=user_buttons type=button value="Copy Read-Only Link 📋 "/> 
 
     <div class="hide-on-button-press hidden">
         <label for="logDate" class="hidden" >Entry Date</label>
-        <input type="date" 
-            id="logDate"
-            name ="log-date"
-            min="01-01"
-            class="hide-on-button-press hidden"
-            lang="en-GB">
+        <input type="date" id="logDate" name ="log-date" min="01-01" class="hide-on-button-press hidden" lang="en-GB">
 
         <label for="workcmp" class="hidden">Work completed</label>
-        <textarea type="text" 
-            id="workCmp" 
-            name="work-done" required
-            size ="25"
-            cols="60" 
-            rows="5"
-            class="hide-on-button-press hidden"
-        ></textarea>
+        <textarea type="text"  id="workCmp"  name="work-done" required size ="25"cols="60" rows="5" class="hide-on-button-press hidden"></textarea>
 
         <label for="knGain" class="hidden">Knowledge Gained</label>
-        <textarea type="text" 
-            id="knGain" 
-            name="knownledge-gained" required
-            size ="25"
-            cols="60" 
-            rows="5"
-            class="hide-on-button-press hidden"
-        ></textarea>
+        <textarea type="text" id="knGain" name="knownledge-gained" required size ="25" cols="60" rows="5" class="hide-on-button-press hidden"></textarea>
+       
         <div class="tooltip-container">        
             <label for="cmptcy" class="hidden">Competency</label>
             <div class="tooltip" title="This log includes support for ICTtech competency codes A trough E to properly categorise the work you complete. Check out www.theiet.org to find out more"> ? </div>
         </div>
+
         <select name="competency-level" id="cmptcy" class="hide-on-button-press hidden">         
             <optgroup label="A - knowledge and understanding">
                 <option value="A1">A1</option>
@@ -109,20 +76,14 @@
             <div id="selectedItems"></div>
         <input id=submitEntry type=submit value="Submit" class="hide-on-button-press hidden">
         <input id=CancelLogEdit type=submit value="Cancel" >
-
     </div>
-
 </main>
 
 <template id="tplate-entry">
     <article class = "entry">
-        <!-- <aside>Date :</aside> -->
         <p class ="entry-date">Date</p>
-        <!--<aside>Work Completed :</aside> -->
         <p class ="entry-work">Work Completed</p>
-        <!--<aside>Knowledge Gain :</aside> -->
         <p class ="entry-xp">Knowledge Used</p>
-        <!--<aside>Competency Levels :</aside> -->
         <p class ="entry-competency">Competency Level</p>
         <a id=editlog class="entry-editLog">Edit Log</a>
     </article>
