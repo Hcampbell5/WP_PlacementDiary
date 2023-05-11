@@ -59,7 +59,6 @@ function populateDiary() {
 
 // creates JSON for log entry
 function createLogEntry() {
-  debugger;
   const logEntryObj = {
     id: app.id,
     usrID: app.data.usrID,
@@ -124,7 +123,6 @@ function loadCompetencies(competenciesString) {
   const cleanedString = competenciesString.replace(/\[|\]/g, '');
   // Split the string by commas to get individual competencies
   const competencies = cleanedString.split(',').map(competency => competency.trim());
-  debugger;
   competencies.forEach((competency) => {
     const competencyElement = createCompetencyElement(competency);
     el.competenciesContainer.appendChild(competencyElement);
@@ -133,7 +131,6 @@ function loadCompetencies(competenciesString) {
 
 // function to create Competency elements (tags) for the already selected competencies
 function createCompetencyElement(competency) {
-  debugger;
   const competencyElement = document.createElement('div');
   competencyElement.classList.add('selected-item');
 
@@ -177,7 +174,6 @@ function competencyList() {
 
 // function to fetch and stringify the contents of all selected items to send to database
 function getSelectedCompetencies() {
-   debugger;
    const selectedItems = Array.from(el.competenciesContainer.getElementsByClassName('selected-item'));
    const values = selectedItems.map(item => item.querySelector('span').textContent);
    const competencyString = '[' + values.join(', ') + ']';
